@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,58 +16,54 @@ class LoginPage extends StatelessWidget {
       padding: EdgeInsets.all(16),
       child: ListView(
         children: <Widget>[
-          TextFormField(
-            style: TextStyle(
-              fontSize: 25,
-              color: Colors.blue
-            ),
-            decoration: InputDecoration(
-              labelText: "Login",
-              labelStyle: TextStyle(
-                fontSize: 25,
-                color: Colors.grey
-              ),
-              hintText: "Digite o login",
-              hintStyle: TextStyle(
-                fontSize: 16
-              )
-            ),
+          _text("Login", "Digite o login"),
+          SizedBox(
+            height: 10
           ),
-          SizedBox(height: 10,),
-          TextFormField(
-            obscureText: true,
-            style: TextStyle(
-                fontSize: 25,
-                color: Colors.blue
-            ),
-            decoration: InputDecoration(
-                labelText: "Senha",
-                labelStyle: TextStyle(
-                    fontSize: 25,
-                    color: Colors.grey
-                ),
-                hintText: "Digite a senha",
-                hintStyle: TextStyle(
-                    fontSize: 16
-                )
-            ),
+          _text("Senha", "Digite a senha", password: true),
+          SizedBox(
+            height: 20,
           ),
-          SizedBox(height: 20,),
-          Container(
-            height: 46,
-            child: RaisedButton(
-              color: Colors.blue,
-              child: Text(
-                "Login",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                ),
-              ),
-              onPressed: () {},
-            ),
-          )
+          _button("Login"),
         ],
+      ),
+    );
+  }
+
+  _button(String text) {
+    return Container(
+      height: 46,
+      child: RaisedButton(
+        color: Colors.blue,
+        child: Text(
+          text,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 22,
+          ),
+        ),
+        onPressed: () {},
+      ),
+    );
+  }
+
+  _text(String label, String hint, {bool password = false}) {
+    return TextFormField(
+      obscureText: password,
+      style: TextStyle(
+        fontSize: 25,
+        color: Colors.blue,
+      ),
+      decoration: InputDecoration(
+        labelText: label,
+        labelStyle: TextStyle(
+          fontSize: 25,
+          color: Colors.grey,
+        ),
+        hintText: hint,
+        hintStyle: TextStyle(
+          fontSize: 16,
+        ),
       ),
     );
   }
