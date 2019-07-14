@@ -1,3 +1,4 @@
+import 'package:carros/pages/login_api.dart';
 import 'package:carros/widgets/app_button.dart';
 import 'package:carros/widgets/app_text.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,7 @@ class _LoginPageState extends State<LoginPage> {
     );
   }
 
-  void _onClickLogin() {
+  void _onClickLogin() async {
     if (!_formKey.currentState.validate()) {
       return;
     }
@@ -79,6 +80,14 @@ class _LoginPageState extends State<LoginPage> {
     String senha = _tSenha.text;
 
     print("Login: $login, Senha: $senha");
+
+    bool ok = await LoginApi.login(login, senha);
+
+    if(ok) {
+      print("Login efetuado com sucesso");
+    } else {
+      print("Erro no login");
+    }
   }
 
   String _validateLogin(String text) {
