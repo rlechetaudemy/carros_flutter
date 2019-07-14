@@ -1,5 +1,6 @@
 import 'package:carros/pages/home_page.dart';
 import 'package:carros/pages/login_api.dart';
+import 'package:carros/pages/usuario.dart';
 import 'package:carros/utils/nav.dart';
 import 'package:carros/widgets/app_button.dart';
 import 'package:carros/widgets/app_text.dart';
@@ -83,9 +84,9 @@ class _LoginPageState extends State<LoginPage> {
 
     print("Login: $login, Senha: $senha");
 
-    bool ok = await LoginApi.login(login, senha);
+    Usuario user = await LoginApi.login(login, senha);
 
-    if(ok) {
+    if(user != null) {
       push(context, HomePage());
     } else {
       print("Login incorreto");
