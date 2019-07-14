@@ -22,7 +22,6 @@ class LoginApi {
 
     print('Response status: ${response.statusCode}');
     print('Response body: ${response.body}');
-
     Map mapResponse = json.decode(response.body);
 
     final user = Usuario.fromJson(mapResponse);
