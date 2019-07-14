@@ -1,4 +1,5 @@
-import 'package:carros/pages/login_api.dart';
+import 'package:carros/pages/home_page.dart';
+import 'package:carros/utils/nav.dart';
 import 'package:carros/widgets/app_button.dart';
 import 'package:carros/widgets/app_text.dart';
 import 'package:flutter/material.dart';
@@ -81,13 +82,7 @@ class _LoginPageState extends State<LoginPage> {
 
     print("Login: $login, Senha: $senha");
 
-    bool ok = await LoginApi.login(login, senha);
-
-    if(ok) {
-      print("Login efetuado com sucesso");
-    } else {
-      print("Erro no login");
-    }
+    push(context, HomePage());
   }
 
   String _validateLogin(String text) {
