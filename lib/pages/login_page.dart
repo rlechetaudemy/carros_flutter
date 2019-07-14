@@ -1,10 +1,13 @@
 import 'package:carros/pages/home_page.dart';
 import 'package:carros/pages/login_api.dart';
 import 'package:carros/pages/usuario.dart';
+import 'package:carros/utils/alert.dart';
 import 'package:carros/utils/nav.dart';
 import 'package:carros/widgets/app_button.dart';
 import 'package:carros/widgets/app_text.dart';
 import 'package:flutter/material.dart';
+
+import 'api_response.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -84,9 +87,9 @@ class _LoginPageState extends State<LoginPage> {
 
     print("Login: $login, Senha: $senha");
 
-    Usuario user = await LoginApi.login(login, senha);
+    bool ok = await LoginApi.login(login, senha);
 
-    if(user != null) {
+    if(ok) {
       push(context, HomePage());
     } else {
       print("Login incorreto");
