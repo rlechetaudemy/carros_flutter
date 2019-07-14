@@ -25,14 +25,7 @@ class LoginApi {
 
     Map mapResponse = json.decode(response.body);
 
-    String nome = mapResponse["nome"];
-    String email = mapResponse["email"];
-    String token = mapResponse["token"];
-
-    List<dynamic> roles = mapResponse["roles"];
-    List<String> roles2 = roles.map<String>((role) => role.toString()).toList();
-
-    final user = Usuario(login,nome, email,token, roles2);
+    final user = Usuario.fromJson(mapResponse);
 
     print("User: $user");
 
