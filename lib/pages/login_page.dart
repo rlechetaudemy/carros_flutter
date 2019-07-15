@@ -88,8 +88,7 @@ class _LoginPageState extends State<LoginPage> {
 
     ApiResponse response = await LoginApi.login(login, senha);
 
-    if(response.ok) {
-
+    if (response.ok) {
       Usuario user = response.result;
 
       print(">>> $user");

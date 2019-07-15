@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +15,7 @@ class HomePage extends StatelessWidget {
   _body() {
     return Center(
       child: Text(
-        "Ricardo",
+        "Home",
         style: TextStyle(
           fontSize: 22,
         ),
