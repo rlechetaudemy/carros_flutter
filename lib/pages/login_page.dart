@@ -22,6 +22,8 @@ class _LoginPageState extends State<LoginPage> {
 
   final _focusSenha = FocusNode();
 
+  bool _showProgress = false;
+
   @override
   void initState() {
     super.initState();
@@ -38,6 +40,8 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _body() {
+    _showProgress = true;
+
     return Form(
       key: _formKey,
       child: Container(
@@ -69,7 +73,8 @@ class _LoginPageState extends State<LoginPage> {
             AppButton(
               "Login",
               onPressed: _onClickLogin,
-            ),
+              showProgress: _showProgress,
+            )
           ],
         ),
       ),
