@@ -14,6 +14,7 @@ class _HomePageState extends State<HomePage> with SingleTickerProviderStateMixin
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
+      initialIndex: 2,
       child: Scaffold(
         appBar: AppBar(
           title: Text("Carros"),
