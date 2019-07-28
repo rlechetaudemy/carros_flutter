@@ -19,9 +19,9 @@ class HomePage extends StatelessWidget {
           ]),
         ),
         body: TabBarView(children: [
-          CarrosListView(),
-          Container(color: Colors.green,),
-          Container(color: Colors.yellow,),
+          CarrosListView(TipoCarro.classicos),
+          CarrosListView(TipoCarro.esportivos),
+          CarrosListView(TipoCarro.luxo),
         ]),
         drawer: DrawerList(),
       ),
