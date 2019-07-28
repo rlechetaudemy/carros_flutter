@@ -30,6 +30,8 @@ class LoginApi {
       if(response.statusCode == 200) {
         final user = Usuario.fromJson(mapResponse);
 
+        user.savePrefs();
+
         return ApiResponse.ok(user);
       }
 

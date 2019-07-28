@@ -15,6 +15,10 @@ class Usuario {
             ? map["roles"].map<String>((role) => role.toString()).toList()
             : null;
 
+  void savePrefs() {
+
+  }
+
   @override
   String toString() {
     return 'Usuario{login: $login, nome: $nome, email: $email, token: $token, roles: $roles}';
