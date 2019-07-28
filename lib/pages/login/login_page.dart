@@ -30,7 +30,7 @@ class _LoginPageState extends State<LoginPage> {
 
     Future<Usuario> future = Usuario.get();
     future.then((Usuario user) {
-      if(user != null) {
+      if (user != null) {
         push(context, HomePage(), replace: true);
       }
     });
@@ -47,7 +47,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _body() {
-
     return Form(
       key: _formKey,
       child: Container(
