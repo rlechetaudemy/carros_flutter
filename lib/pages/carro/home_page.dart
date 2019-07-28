@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Carros"),
+        title: Text("Carros1"),
       ),
       body: _body(),
       drawer: DrawerList(),
@@ -21,6 +21,18 @@ class HomePage extends StatelessWidget {
     return FutureBuilder(
       future: future,
       builder: (context, snapshot) {
+        if (snapshot.hasError) {
+          return Center(
+            child: Text(
+              "Não foi possível buscar os carros",
+              style: TextStyle(
+                color: Colors.red,
+                fontSize: 22,
+              ),
+            ),
+          );
+        }
+
         if (!snapshot.hasData) {
           return Center(
             child: CircularProgressIndicator(),
@@ -51,7 +63,7 @@ class HomePage extends StatelessWidget {
                 children: <Widget>[
                   Center(
                     child: Image.network(
-                      c.urlFoto,
+                      c.urlFoto ?? "http://www.livroandroid.com.br/livro/carros/esportivos/Ferrari_FF.png",
                       width: 250,
                     ),
                   ),
