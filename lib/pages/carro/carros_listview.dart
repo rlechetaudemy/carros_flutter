@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:carros/pages/carro/carro.dart';
 import 'package:carros/pages/carro/carro_page.dart';
 import 'package:carros/pages/carro/carros_api.dart';
+import 'package:carros/pages/carro/carros_bloc.dart';
 import 'package:carros/utils/nav.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,9 @@ class CarrosListView extends StatefulWidget {
 class _CarrosListViewState extends State<CarrosListView> with AutomaticKeepAliveClientMixin<CarrosListView> {
   List<Carro> carros;
 
-  final _streamController = StreamController<List<Carro>>();
+  String get tipo => widget.tipo;
+
+  final _bloc = CarrosBloc();
 
   @override
   bool get wantKeepAlive => true;
@@ -27,13 +30,7 @@ class _CarrosListViewState extends State<CarrosListView> with AutomaticKeepAlive
   void initState() {
     super.initState();
 
-    _loadCarros();
-  }
-
-  _loadCarros() async {
-    List<Carro> carros = await CarrosApi.getCarros(widget.tipo);
-
-    _streamController.add(carros);
+    _bloc.fetch(tipo);
   }
 
   @override
@@ -41,7 +38,7 @@ class _CarrosListViewState extends State<CarrosListView> with AutomaticKeepAlive
     super.build(context);
 
     return StreamBuilder(
-      stream: _streamController.stream,
+      stream: _bloc.stream,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return Center(
@@ -133,6 +130,6 @@ class _CarrosListViewState extends State<CarrosListView> with AutomaticKeepAlive
   void dispose() {
     super.dispose();
 
-    _streamController.close();
+    _bloc.dispose();
   }
 }
