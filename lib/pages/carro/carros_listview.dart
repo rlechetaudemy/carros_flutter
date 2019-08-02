@@ -40,8 +40,6 @@ class _CarrosListViewState extends State<CarrosListView> with AutomaticKeepAlive
   Widget build(BuildContext context) {
     super.build(context);
 
-    print("CarrosListView build ${widget.tipo}");
-
     return StreamBuilder(
       stream: _streamController.stream,
       builder: (context, snapshot) {
@@ -70,7 +68,7 @@ class _CarrosListViewState extends State<CarrosListView> with AutomaticKeepAlive
     );
   }
 
-  Container _listView(List<Carro> carros) {
+  _listView(List<Carro> carros) {
     return Container(
       padding: EdgeInsets.all(16),
       child: ListView.builder(
