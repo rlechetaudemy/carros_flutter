@@ -88,7 +88,7 @@ class _LoginPageState extends State<LoginPage> {
                   showProgress: snapshot.data,
                 );
               }
-            )
+            ),
           ],
         ),
       ),
