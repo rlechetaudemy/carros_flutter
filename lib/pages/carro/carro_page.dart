@@ -1,17 +1,33 @@
 import 'package:carros/pages/carro/carro.dart';
+import 'package:carros/pages/carro/loripsum_api.dart';
 import 'package:carros/widgets/text.dart';
 import 'package:flutter/material.dart';
 
-class CarroPage extends StatelessWidget {
+class CarroPage extends StatefulWidget {
+
   Carro carro;
 
   CarroPage(this.carro);
 
   @override
+  _CarroPageState createState() => _CarroPageState();
+}
+
+class _CarroPageState extends State<CarroPage> {
+  final _loripsumApiBloc = LoripsumBloc();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _loripsumApiBloc.fetch();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(carro.nome),
+        title: Text(widget.carro.nome),
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.place),
@@ -51,7 +67,7 @@ class CarroPage extends StatelessWidget {
       padding: EdgeInsets.all(16),
       child: ListView(
         children: <Widget>[
-          Image.network(carro.urlFoto),
+          Image.network(widget.carro.urlFoto),
           _bloco1(),
           Divider(),
           _bloco2(),
@@ -67,8 +83,8 @@ class CarroPage extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                text(carro.nome, fontSize: 20, bold: true),
-                text(carro.tipo, fontSize: 16)
+                text(widget.carro.nome, fontSize: 20, bold: true),
+                text(widget.carro.tipo, fontSize: 16)
               ],
             ),
             Row(
@@ -99,9 +115,18 @@ class CarroPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         SizedBox(height: 20,),
-        text(carro.descricao,fontSize: 16,bold: true),
+        text(widget.carro.descricao,fontSize: 16,bold: true),
         SizedBox(height: 20,),
-        text("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Respondent extrema primis, media utrisque, omnia omnibus. Isto modo ne improbos quidem, si essent boni viri. Neque enim disputari sine reprehensione nec cum iracundia aut pertinacia recte disputari potest. Illud mihi a te nimium festinanter dictum videtur, sapientis omnis esse semper beatos;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Respondent extrema primis, media utrisque, omnia omnibus. Isto modo ne improbos quidem, si essent boni viri. Neque enim disputari sine reprehensione nec cum iracundia aut pertinacia recte disputari potest. Illud mihi a te nimium festinanter dictum videtur, sapientis omnis esse semper beatos;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Respondent extrema primis, media utrisque, omnia omnibus. Isto modo ne improbos quidem, si essent boni viri. Neque enim disputari sine reprehensione nec cum iracundia aut pertinacia recte disputari potest. Illud mihi a te nimium festinanter dictum videtur, sapientis omnis esse semper beatos;",fontSize: 16),
+        StreamBuilder<String>(
+          stream: _loripsumApiBloc.stream,
+          builder: (BuildContext context, AsyncSnapshot snapshot) {
+            if(!snapshot.hasData) {
+              return Center(child: CircularProgressIndicator(),);
+            }
+
+            return text(snapshot.data,fontSize: 16);
+          },
+        ),
       ],
     );
   }
@@ -127,4 +152,11 @@ class CarroPage extends StatelessWidget {
   void _onClickFavorito() {}
 
   void _onClickShare() {}
+
+  @override
+  void dispose() {
+    super.dispose();
+
+    _loripsumApiBloc.dispose();
+  }
 }
