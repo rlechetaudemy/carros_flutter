@@ -25,6 +25,16 @@ class CarroDAO {
     return carros;
   }
 
+  Future<List<Carro>> findAllByTipo(String tipo) async {
+    final dbClient = await db;
+
+    final list = await dbClient.rawQuery('select * from carro where tipo =? ',[tipo]);
+
+    final carros = list.map<Carro>((json) => Carro.fromJson(json)).toList();
+
+    return carros;
+  }
+
   Future<Carro> findById(int id) async {
     var dbClient = await db;
     final list =
