@@ -1,8 +1,8 @@
 
 import 'dart:async';
 
-import 'package:carros/pages/carro/carro.dart';
-import 'package:carros/pages/carro/carros_api.dart';
+import 'package:carros/pages/carros/carro.dart';
+import 'package:carros/pages/carros/carros_api.dart';
 
 class CarrosBloc {
 

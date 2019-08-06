@@ -1,6 +1,6 @@
 import 'package:carros/drawer_list.dart';
-import 'package:carros/pages/carro/carros_api.dart';
-import 'package:carros/pages/carro/carros_page.dart';
+import 'package:carros/pages/carros/carros_api.dart';
+import 'package:carros/pages/carros/carros_page.dart';
 import 'package:carros/utils/prefs.dart';
 import 'package:flutter/material.dart';
 
