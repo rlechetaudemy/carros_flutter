@@ -64,4 +64,9 @@ class CarroDAO {
     var dbClient = await db;
     return await dbClient.rawDelete('delete from carro where id = ?', [id]);
   }
+
+  Future<int> deleteAll() async {
+    var dbClient = await db;
+    return await dbClient.rawDelete('delete from carro');
+  }
 }

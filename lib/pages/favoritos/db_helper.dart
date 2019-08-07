@@ -19,7 +19,7 @@ class DatabaseHelper {
     return _db;
   }
 
-  initDb() async {
+  Future initDb() async {
     String databasesPath = await getDatabasesPath();
     String path = join(databasesPath, 'carros.db');
     print("db $path");
