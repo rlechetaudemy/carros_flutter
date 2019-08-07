@@ -1,4 +1,3 @@
-
 import 'package:carros/pages/carros/carro.dart';
 import 'package:carros/pages/carros/carros_bloc.dart';
 import 'package:carros/pages/carros/carros_listview.dart';
@@ -7,13 +6,15 @@ import 'package:flutter/material.dart';
 
 class CarrosPage extends StatefulWidget {
   String tipo;
+
   CarrosPage(this.tipo);
 
   @override
   _CarrosPageState createState() => _CarrosPageState();
 }
 
-class _CarrosPageState extends State<CarrosPage> with AutomaticKeepAliveClientMixin<CarrosPage> {
+class _CarrosPageState extends State<CarrosPage>
+    with AutomaticKeepAliveClientMixin<CarrosPage> {
   List<Carro> carros;
 
   String get tipo => widget.tipo;
@@ -49,9 +50,16 @@ class _CarrosPageState extends State<CarrosPage> with AutomaticKeepAliveClientMi
 
         List<Carro> carros = snapshot.data;
 
-        return CarrosListView(carros);
+        return RefreshIndicator(
+          onRefresh: _onRefresh,
+          child: CarrosListView(carros),
+        );
       },
     );
+  }
+
+  Future<void> _onRefresh() {
+    return _bloc.fetch(tipo);
   }
 
   @override
