@@ -4,9 +4,10 @@ import 'package:carros/pages/carros/carro.dart';
 import 'package:carros/pages/favoritos/db_helper.dart';
 import 'package:sqflite/sqflite.dart';
 
+// Data Access Object
 class CarroDAO {
 
-  get db => DatabaseHelper.getInstance().db;
+  Future<Database> get db => DatabaseHelper.getInstance().db;
 
   Future<int> save(Carro carro) async {
     var dbClient = await db;

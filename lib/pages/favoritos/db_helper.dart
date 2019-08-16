@@ -5,8 +5,9 @@ import 'package:sqflite/sqflite.dart';
 
 class DatabaseHelper {
   static final DatabaseHelper _instance = DatabaseHelper.getInstance();
-  factory DatabaseHelper() => _instance;
   DatabaseHelper.getInstance();
+
+  factory DatabaseHelper() => _instance;
 
   static Database _db;
 
@@ -14,20 +15,17 @@ class DatabaseHelper {
     if (_db != null) {
       return _db;
     }
-    _db = await initDb();
+    _db = await _initDb();
 
     return _db;
   }
 
-  Future initDb() async {
+  Future _initDb() async {
     String databasesPath = await getDatabasesPath();
     String path = join(databasesPath, 'carros.db');
     print("db $path");
 
-    // para testes vc pode deletar o banco
-//    await deleteDatabase(path);
-
-    var db = await openDatabase(path, version: 1, onCreate: _onCreate, onUpgrade: _onUpgrade);
+    var db = await openDatabase(path, version: 2, onCreate: _onCreate, onUpgrade: _onUpgrade);
     return db;
   }
 
@@ -37,8 +35,12 @@ class DatabaseHelper {
         ', descricao TEXT, urlFoto TEXT, urlVideo TEXT, latitude TEXT, longitude TEXT)');
   }
 
-  FutureOr<void> _onUpgrade(Database db, int oldVersion, int newVersion) {
+  Future<FutureOr<void>> _onUpgrade(Database db, int oldVersion, int newVersion) async {
     print("_onUpgrade: oldVersion: $oldVersion > newVersion: $newVersion");
+
+    if(oldVersion == 1 && newVersion == 2) {
+      await db.execute("alter table carro add column NOVA TEXT");
+    }
   }
 
   Future close() async {
