@@ -1,4 +1,4 @@
-import 'package:carros/pages/favoritos/entity.dart';
+import 'package:carros/utils/sql/entity.dart';
 
 class Carro extends Entity {
   int id;
