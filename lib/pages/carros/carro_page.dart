@@ -1,10 +1,11 @@
+
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carros/pages/carros/carro.dart';
 import 'package:carros/pages/carros/loripsum_api.dart';
 import 'package:carros/widgets/text.dart';
 import 'package:flutter/material.dart';
 
 class CarroPage extends StatefulWidget {
-
   Carro carro;
 
   CarroPage(this.carro);
@@ -15,6 +16,8 @@ class CarroPage extends StatefulWidget {
 
 class _CarroPageState extends State<CarroPage> {
   final _loripsumApiBloc = LoripsumBloc();
+
+  Carro get carro => widget.carro;
 
   @override
   void initState() {
@@ -67,7 +70,8 @@ class _CarroPageState extends State<CarroPage> {
       padding: EdgeInsets.all(16),
       child: ListView(
         children: <Widget>[
-          Image.network(widget.carro.urlFoto),
+          CachedNetworkImage(
+              imageUrl:widget.carro.urlFoto),
           _bloco1(),
           Divider(),
           _bloco2(),
@@ -78,53 +82,59 @@ class _CarroPageState extends State<CarroPage> {
 
   Row _bloco1() {
     return Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: <Widget>[
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                text(widget.carro.nome, fontSize: 20, bold: true),
-                text(widget.carro.tipo, fontSize: 16)
-              ],
+            text(widget.carro.nome, fontSize: 20, bold: true),
+            text(widget.carro.tipo, fontSize: 16)
+          ],
+        ),
+        Row(
+          children: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.favorite,
+                color: Colors.red,
+                size: 40,
+              ),
+              onPressed: _onClickFavorito,
             ),
-            Row(
-              children: <Widget>[
-                IconButton(
-                  icon: Icon(
-                    Icons.favorite,
-                    color: Colors.red,
-                    size: 40,
-                  ),
-                  onPressed: _onClickFavorito,
-                ),
-                IconButton(
-                  icon: Icon(
-                    Icons.share,
-                    size: 40,
-                  ),
-                  onPressed: _onClickShare,
-                )
-              ],
+            IconButton(
+              icon: Icon(
+                Icons.share,
+                size: 40,
+              ),
+              onPressed: _onClickShare,
             )
           ],
-        );
+        )
+      ],
+    );
   }
 
   _bloco2() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        SizedBox(height: 20,),
-        text(widget.carro.descricao,fontSize: 16,bold: true),
-        SizedBox(height: 20,),
+        SizedBox(
+          height: 20,
+        ),
+        text(widget.carro.descricao, fontSize: 16, bold: true),
+        SizedBox(
+          height: 20,
+        ),
         StreamBuilder<String>(
           stream: _loripsumApiBloc.stream,
           builder: (BuildContext context, AsyncSnapshot snapshot) {
-            if(!snapshot.hasData) {
-              return Center(child: CircularProgressIndicator(),);
+            if (!snapshot.hasData) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
             }
 
-            return text(snapshot.data,fontSize: 16);
+            return text(snapshot.data, fontSize: 16);
           },
         ),
       ],
@@ -149,7 +159,9 @@ class _CarroPageState extends State<CarroPage> {
     }
   }
 
-  void _onClickFavorito() {}
+  void _onClickFavorito() async {
+
+  }
 
   void _onClickShare() {}
 
