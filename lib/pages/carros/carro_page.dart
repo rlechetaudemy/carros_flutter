@@ -17,8 +17,6 @@ class CarroPage extends StatefulWidget {
 class _CarroPageState extends State<CarroPage> {
   final _loripsumApiBloc = LoripsumBloc();
 
-  Carro get carro => widget.carro;
-
   @override
   void initState() {
     super.initState();

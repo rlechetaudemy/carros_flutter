@@ -28,8 +28,6 @@ class _CarrosPageState extends State<CarrosPage>
   void initState() {
     super.initState();
 
-    print("init $tipo");
-
     _bloc.fetch(tipo);
   }
 
@@ -67,8 +65,6 @@ class _CarrosPageState extends State<CarrosPage>
   @override
   void dispose() {
     super.dispose();
-
-    print("dispose $tipo");
 
     _bloc.dispose();
   }
