@@ -1,5 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carros/pages/carros/carro.dart';
+import 'package:carros/widgets/app_button.dart';
+import 'package:carros/widgets/app_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -85,47 +87,21 @@ class _CarroFormPageState extends State<CarroFormPage> {
           ),
           _radioTipo(),
           Divider(),
-          TextFormField(
+          AppText(
+            'Nome',
+            '',
             controller: tNome,
             keyboardType: TextInputType.text,
             validator: _validateNome,
-            style: TextStyle(color: Colors.blue, fontSize: 20),
-            decoration: new InputDecoration(
-              hintText: '',
-              labelText: 'Nome',
-            ),
           ),
-          TextFormField(
+          AppText('Descrição','',
             controller: tDesc,
-            keyboardType: TextInputType.text,
-            style: TextStyle(
-              color: Colors.blue,
-              fontSize: 20,
-            ),
-            decoration: new InputDecoration(
-              hintText: '',
-              labelText: 'Descrição',
-            ),
+            keyboardType: TextInputType.text
           ),
-          Container(
-            height: 50,
-            margin: new EdgeInsets.only(top: 20.0),
-            child: RaisedButton(
-              color: Colors.blue,
-              child: _showProgress
-                  ? CircularProgressIndicator(
-                valueColor:
-                new AlwaysStoppedAnimation<Color>(Colors.white),
-              )
-                  : new Text(
-                "Salvar",
-                style: new TextStyle(
-                  color: Colors.white,
-                  fontSize: 22,
-                ),
-              ),
-              onPressed: _onClickSalvar,
-            ),
+          AppButton(
+            "Salvar",
+            onPressed: _onClickSalvar,
+            showProgress: _showProgress
           )
         ],
       ),
@@ -134,7 +110,9 @@ class _CarroFormPageState extends State<CarroFormPage> {
 
   _headerFoto() {
     return carro != null
-        ? CachedNetworkImage(imageUrl: carro.urlFoto,)
+        ? CachedNetworkImage(
+            imageUrl: carro.urlFoto,
+          )
         : Image.asset(
             "assets/images/camera.png",
             height: 150,
@@ -142,39 +120,37 @@ class _CarroFormPageState extends State<CarroFormPage> {
   }
 
   _radioTipo() {
-    return Center(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Radio(
-            value: 0,
-            groupValue: _radioIndex,
-            onChanged: _onClickTipo,
-          ),
-          Text(
-            "Clássicos",
-            style: TextStyle(color: Colors.blue, fontSize: 15),
-          ),
-          Radio(
-            value: 1,
-            groupValue: _radioIndex,
-            onChanged: _onClickTipo,
-          ),
-          Text(
-            "Esportivos",
-            style: TextStyle(color: Colors.blue, fontSize: 15),
-          ),
-          Radio(
-            value: 2,
-            groupValue: _radioIndex,
-            onChanged: _onClickTipo,
-          ),
-          Text(
-            "Luxo",
-            style: TextStyle(color: Colors.blue, fontSize: 15),
-          ),
-        ],
-      ),
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        Radio(
+          value: 0,
+          groupValue: _radioIndex,
+          onChanged: _onClickTipo,
+        ),
+        Text(
+          "Clássicos",
+          style: TextStyle(color: Colors.blue, fontSize: 15),
+        ),
+        Radio(
+          value: 1,
+          groupValue: _radioIndex,
+          onChanged: _onClickTipo,
+        ),
+        Text(
+          "Esportivos",
+          style: TextStyle(color: Colors.blue, fontSize: 15),
+        ),
+        Radio(
+          value: 2,
+          groupValue: _radioIndex,
+          onChanged: _onClickTipo,
+        ),
+        Text(
+          "Luxo",
+          style: TextStyle(color: Colors.blue, fontSize: 15),
+        ),
+      ],
     );
   }
 
