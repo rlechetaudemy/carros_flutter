@@ -1,6 +1,5 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carros/pages/carros/carro.dart';
-import 'package:carros/widgets/app_button.dart';
-import 'package:carros/widgets/app_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -24,7 +23,7 @@ class _CarroFormPageState extends State<CarroFormPage> {
 
   var _showProgress = false;
 
-  get carro => widget.carro;
+  Carro get carro => widget.carro;
 
   // Add validate email function.
   String _validateNome(String value) {
@@ -42,7 +41,7 @@ class _CarroFormPageState extends State<CarroFormPage> {
     // Copia os dados do carro para o form
     if (carro != null) {
       tNome.text = carro.nome;
-      tDesc.text = carro.desc;
+      tDesc.text = carro.descricao;
       _radioIndex = getTipoInt(carro);
     }
   }
@@ -135,7 +134,7 @@ class _CarroFormPageState extends State<CarroFormPage> {
 
   _headerFoto() {
     return carro != null
-        ? Image.network(carro.urlFoto)
+        ? CachedNetworkImage(imageUrl: carro.urlFoto,)
         : Image.asset(
             "assets/images/camera.png",
             height: 150,
@@ -226,7 +225,7 @@ class _CarroFormPageState extends State<CarroFormPage> {
 
     print("Salvar o carro $c");
 
-    await Future.delayed(Duration(seconds: 5));
+    await Future.delayed(Duration(seconds: 3));
 
     setState(() {
       _showProgress = false;
