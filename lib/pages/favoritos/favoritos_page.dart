@@ -1,5 +1,4 @@
 import 'package:carros/pages/carros/carro.dart';
-import 'package:carros/pages/carros/carros_bloc.dart';
 import 'package:carros/pages/carros/carros_listview.dart';
 import 'package:carros/pages/favoritos/favoritos_bloc.dart';
 import 'package:carros/widgets/text_error.dart';
