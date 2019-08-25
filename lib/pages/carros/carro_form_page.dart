@@ -88,20 +88,23 @@ class _CarroFormPageState extends State<CarroFormPage> {
           _radioTipo(),
           Divider(),
           AppText(
-            'Nome',
-            '',
+            "Nome",
+            "",
             controller: tNome,
             keyboardType: TextInputType.text,
             validator: _validateNome,
           ),
-          AppText('Descrição','',
+          AppText(
+            "Descrição",
+            "",
             controller: tDesc,
-            keyboardType: TextInputType.text
+            keyboardType: TextInputType.text,
+            validator: _validateNome,
           ),
           AppButton(
             "Salvar",
             onPressed: _onClickSalvar,
-            showProgress: _showProgress
+            showProgress: _showProgress,
           )
         ],
       ),
