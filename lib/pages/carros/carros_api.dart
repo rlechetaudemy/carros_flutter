@@ -52,6 +52,8 @@ class CarrosApi {
 
     String json = c.toJson();
 
+    print("   JSON > $json");
+
     var response = await http.post(url, body: json, headers: headers);
 
     print('Response status: ${response.statusCode}');

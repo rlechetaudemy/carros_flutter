@@ -53,7 +53,8 @@ class Carro extends Entity {
 
   @override
   String toString() {
-    return 'Carro{id: $id, nome: $nome, tipo: $tipo, desc: $descricao}';
+    return 'Carro{id: $id, nome: $nome, tipo: $tipo, descricao: $descricao, urlFoto: $urlFoto, urlVideo: $urlVideo, latitude: $latitude, longitude: $longitude}';
   }
+
 
 }
