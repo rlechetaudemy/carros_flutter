@@ -25,6 +25,7 @@ dependencies:
   sqflite: ^1.1.6+3
   cached_network_image: ^1.1.1
   connectivity: ^0.4.3+7
+  image_picker: ^0.6.1+4
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
