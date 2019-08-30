@@ -65,7 +65,7 @@ class CarrosApi {
     if(response.statusCode == 201) {
       Map mapResponse = convert.json.decode(response.body);
 
-      final carro = Carro.fromMap(mapResponse);
+      Carro carro = Carro.fromMap(mapResponse);
 
       print("Novo carro: ${carro.id}");
 
