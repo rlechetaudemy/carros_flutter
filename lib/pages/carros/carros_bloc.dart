@@ -24,6 +24,13 @@ class CarrosBloc {
 
       List<Carro> carros = await CarrosApi.getCarros(tipo);
 
+      if(carros.isNotEmpty) {
+        final dao = CarroDAO();
+
+        // Salvar todos os carros
+        carros.forEach(dao.save);
+      }
+
       _streamController.add(carros);
 
       return carros;

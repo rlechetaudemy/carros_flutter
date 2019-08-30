@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-alert(BuildContext context, String msg) {
+alert(BuildContext context, String msg, {Function callback}) {
   showDialog(
     context: context,
     barrierDismissible: false,
@@ -15,6 +15,9 @@ alert(BuildContext context, String msg) {
               child: Text("OK"),
               onPressed: () {
                 Navigator.pop(context);
+                if(callback != null) {
+                  callback();
+                }
               },
             )
           ],
