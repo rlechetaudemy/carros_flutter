@@ -1,22 +1,15 @@
 import 'dart:async';
 import 'dart:convert' as convert;
 import 'dart:io';
-
 import 'package:carros/pages/api_response.dart';
-import 'package:carros/pages/login/usuario.dart';
-import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:path/path.dart' as path;
+import 'package:carros/utils/http_helper.dart' as http;
 
 class UploadApi {
   static Future<ApiResponse<String>> upload(File file) async {
     try {
       String url = "https://carros-springboot.herokuapp.com/api/v2/upload";
-
-      Usuario user = await Usuario.get();
-      Map<String, String> headers = {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer ${user.token}"
-      };
 
       List<int> imageBytes = file.readAsBytesSync();
       String base64Image = convert.base64Encode(imageBytes);
@@ -37,8 +30,7 @@ class UploadApi {
       final response = await http
           .post(
             url,
-            body: json,
-            headers: headers,
+            body: json
           )
           .timeout(
             Duration(seconds: 120),
@@ -58,7 +50,7 @@ class UploadApi {
     }
   }
 
-  static FutureOr<http.Response> _onTimeOut() {
+  static FutureOr<Response> _onTimeOut() {
     print("timeout!");
     throw SocketException("Não foi possível se comunicar com o servidor.");
   }
