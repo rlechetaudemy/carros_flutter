@@ -1,6 +1,7 @@
 import 'package:carros/pages/api_response.dart';
 import 'package:carros/pages/carros/home_page.dart';
 import 'package:carros/pages/login/login_bloc.dart';
+import 'package:carros/pages/login/usuario.dart';
 import 'package:carros/utils/alert.dart';
 import 'package:carros/utils/nav.dart';
 import 'package:carros/widgets/app_button.dart';
@@ -96,7 +97,7 @@ class _LoginPageState extends State<LoginPage> {
 
     print("Login: $login, Senha: $senha");
 
-    ApiResponse response = await _bloc.login(login, senha);
+    ApiResponse<Usuario> response = await _bloc.login(login, senha);
 
     if (response.ok) {
 //      Usuario user = response.result;
