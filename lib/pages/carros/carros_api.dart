@@ -3,7 +3,7 @@ import 'dart:convert' as convert;
 import 'package:carros/pages/api_response.dart';
 import 'package:carros/pages/carros/carro.dart';
 import 'package:carros/pages/login/usuario.dart';
-import 'package:http/http.dart' as http;
+import 'package:carros/utils/http_helper.dart' as http;
 
 class TipoCarro {
   static final String classicos = "classicos";
@@ -13,19 +13,12 @@ class TipoCarro {
 
 class CarrosApi {
   static Future<List<Carro>> getCarros(String tipo) async {
-    Usuario user = await Usuario.get();
-
-    Map<String, String> headers = {
-      "Content-Type": "application/json",
-      "Authorization": "Bearer ${user.token}"
-    };
-
     var url =
         'https://carros-springboot.herokuapp.com/api/v2/carros/tipo/$tipo';
 
     print("GET > $url");
 
-    var response = await http.get(url, headers: headers);
+    var response = await http.get(url);
 
     String json = response.body;
 
@@ -38,13 +31,6 @@ class CarrosApi {
 
   static Future<ApiResponse<bool>> save(Carro c) async {
     try {
-      Usuario user = await Usuario.get();
-
-      Map<String, String> headers = {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer ${user.token}"
-      };
-
       var url = 'https://carros-springboot.herokuapp.com/api/v2/carros';
       if (c.id != null) {
         url += "/${c.id}";
@@ -57,8 +43,8 @@ class CarrosApi {
       print("   JSON > $json");
 
       var response = await (c.id == null
-          ? http.post(url, body: json, headers: headers)
-          : http.put(url, body: json, headers: headers));
+          ? http.post(url, body: json)
+          : http.put(url, body: json));
 
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
@@ -88,18 +74,12 @@ class CarrosApi {
 
   static Future<ApiResponse<bool>> delete(Carro c) async {
     try {
-      Usuario user = await Usuario.get();
-
-      Map<String, String> headers = {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer ${user.token}"
-      };
 
       var url = 'https://carros-springboot.herokuapp.com/api/v2/carros/${c.id}';
 
       print("DELETE > $url");
 
-      var response = await http.delete(url, headers: headers);
+      var response = await http.delete(url);
 
       print('Response status: ${response.statusCode}');
       print('Response body: ${response.body}');
