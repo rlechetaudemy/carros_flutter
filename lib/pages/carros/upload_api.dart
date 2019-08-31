@@ -41,7 +41,7 @@ class UploadApi {
             headers: headers,
           )
           .timeout(
-            Duration(seconds: 30),
+            Duration(seconds: 120),
             onTimeout: _onTimeOut,
           );
 
