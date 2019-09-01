@@ -44,10 +44,10 @@ class UploadApi {
 
       String urlFoto = map["url"];
 
-      return ApiResponse.ok(urlFoto);
+      return ApiResponse.ok(result:urlFoto);
     } catch (error, exception) {
       print("Erro ao fazer upload $error - $exception");
-      return ApiResponse.error("Não foi possível fazer o upload");
+      return ApiResponse.error(msg:"Não foi possível fazer o upload");
     }
   }
 
