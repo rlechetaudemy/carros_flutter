@@ -131,7 +131,8 @@ class _CarroFormPageState extends State<CarroFormPage> {
             )
           : carro != null
               ? CachedNetworkImage(
-                  imageUrl: carro.urlFoto,
+                  imageUrl: carro.urlFoto ??
+                      "http://www.livroandroid.com.br/livro/carros/esportivos/Ferrari_FF.png",
                   height: 150,
                 )
               : Image.asset(
