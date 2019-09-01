@@ -5,6 +5,7 @@ import 'package:carros/pages/carros/carro.dart';
 import 'package:carros/pages/carros/carro_form_page.dart';
 import 'package:carros/pages/carros/carros_api.dart';
 import 'package:carros/pages/carros/loripsum_api.dart';
+import 'package:carros/pages/carros/map_page.dart';
 import 'package:carros/pages/carros/video_page.dart';
 import 'package:carros/pages/favoritos/favorito_service.dart';
 import 'package:carros/utils/alert.dart';
@@ -160,7 +161,14 @@ class _CarroPageState extends State<CarroPage> {
     );
   }
 
-  void _onClickMapa() {}
+  void _onClickMapa() {
+    if(carro.latitude != null && carro.longitude != null) {
+
+      push(context, MapPage(carro));
+    } else {
+      alert(context, "Este carro não possui Lat/Lng da fábrica.");
+    }
+  }
 
   void _onClickVideo() {
     if(carro.urlVideo != null && carro.urlVideo.isNotEmpty) {

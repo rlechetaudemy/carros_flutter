@@ -2,6 +2,7 @@ import 'dart:convert' as convert;
 
 import 'package:carros/utils/event_bus.dart';
 import 'package:carros/utils/sql/entity.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class CarroEvent extends Event {
   // salvar, deletar
@@ -27,6 +28,11 @@ class Carro extends Entity {
   String urlVideo;
   String latitude;
   String longitude;
+
+  get latlng => LatLng(
+      latitude == null || latitude.isEmpty ? 0.0 : double.parse(latitude),
+      longitude == null || longitude.isEmpty ? 0.0 : double.parse(longitude)
+  );
 
   Carro(
       {this.id,
