@@ -15,7 +15,7 @@ class TipoCarro {
 class CarrosApi {
   static Future<List<Carro>> getCarros(String tipo) async {
     var url =
-        'https://carros-springboot.herokuapp.com/api/v2/carros/tipo/$tipo';
+        'https://carros-springboot.herokuapp.com/api/v1/carros/tipo/$tipo';
 
     print("GET > $url");
 
@@ -41,7 +41,7 @@ class CarrosApi {
         }
       }
 
-      var url = 'https://carros-springboot.herokuapp.com/api/v2/carros';
+      var url = 'https://carros-springboot.herokuapp.com/api/v1/carros';
       if (c.id != null) {
         url += "/${c.id}";
       }
@@ -85,7 +85,7 @@ class CarrosApi {
   static Future<ApiResponse> delete(Carro c) async {
     try {
 
-      var url = 'https://carros-springboot.herokuapp.com/api/v2/carros/${c.id}';
+      var url = 'https://carros-springboot.herokuapp.com/api/v1/carros/${c.id}';
 
       print("DELETE > $url");
 

@@ -13,6 +13,8 @@ class FirebaseService {
       final GoogleSignInAccount googleUser = await _googleSignIn.signIn();
       final GoogleSignInAuthentication googleAuth = await googleUser.authentication;
 
+      print("Google User: ${googleUser.email}");
+
       // Credenciais para o Firebase
       final AuthCredential credential = GoogleAuthProvider.getCredential(
         accessToken: googleAuth.accessToken,
@@ -22,15 +24,18 @@ class FirebaseService {
       // Login no Firebase
       AuthResult result = await _auth.signInWithCredential(credential);
       final FirebaseUser fuser = result.user;
-      print("Firebase User: " + fuser.displayName);
+      print("Firebase Nome: " + fuser.displayName);
+      print("Firebase Email: " + fuser.email);
+      print("Firebase Foto: " + fuser.photoUrl);
 
       // Cria um usuario do app
-      final user = Usuario(nome:fuser.displayName,login:fuser.email,email: fuser.email);
+      final user = Usuario(nome:fuser.displayName,login:fuser.email,email: fuser.email,urlFoto: fuser.photoUrl);
       user.save();
 
       // Resposta genérica
       return ApiResponse.ok();
     } catch(error) {
+      print("Firebase error $error");
       return ApiResponse.error(msg:"Não foi possível fazer o login");
     }
   }
