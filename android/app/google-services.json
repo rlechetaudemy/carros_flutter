@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "216997426714",
+    "firebase_url": "https://carros-f177d.firebaseio.com",
+    "project_id": "carros-f177d",
+    "storage_bucket": "carros-f177d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216997426714:android:cc337c3d126e9d00",
+        "android_client_info": {
+          "package_name": "br.com.livroandroid.carros"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "216997426714-9rqahe5ghtjqk9ep88c1clc7n82hc0ta.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.com.livroandroid.carros",
+            "certificate_hash": "6c6b4f75a99e6bd7e7c55e10a5b317bd64786ef9"
+          }
+        },
+        {
+          "client_id": "216997426714-60bnrlkj78mc978deuml8lon4r7hpdss.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyABcOPByuWfAVz1awhy7dDS5Di2doVM-Y8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "216997426714-60bnrlkj78mc978deuml8lon4r7hpdss.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
