@@ -35,7 +35,6 @@ class CarrosBloc {
 
       return carros;
     } catch (e) {
-      print(e);
       if(! _streamController.isClosed) {
         _streamController.addError(e);
       }
