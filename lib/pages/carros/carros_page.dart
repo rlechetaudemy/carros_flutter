@@ -21,7 +21,7 @@ class _CarrosPageState extends State<CarrosPage>
     with AutomaticKeepAliveClientMixin<CarrosPage> {
   List<Carro> carros;
 
-  StreamSubscription<String> subscription;
+  StreamSubscription<Event> subscription;
 
   String get tipo => widget.tipo;
 
@@ -38,9 +38,12 @@ class _CarrosPageState extends State<CarrosPage>
 
     // Escutando uma stream
     final bus = EventBus.get(context);
-    subscription = bus.stream.listen((String s){
-      print("Event $s");
-      _bloc.fetch(tipo);
+    subscription = bus.stream.listen((Event e){
+      print("Event $e");
+      CarroEvent carroEvent = e;
+      if(carroEvent.tipo == tipo) {
+        _bloc.fetch(tipo);
+      }
     });
   }
 

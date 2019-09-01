@@ -3,15 +3,19 @@ import 'dart:async';
 
 import 'package:provider/provider.dart';
 
+class Event {
+
+}
+
 class EventBus {
 
   static EventBus get(context) => Provider.of<EventBus>(context, listen: false);
 
-  final _streamController = StreamController<String>.broadcast();
+  final _streamController = StreamController<Event>.broadcast();
 
-  Stream<String> get stream => _streamController.stream;
+  Stream<Event> get stream => _streamController.stream;
 
-  sendEvent(String event) {
+  sendEvent(Event event) {
     _streamController.add(event);
   }
 

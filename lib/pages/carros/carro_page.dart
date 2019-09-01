@@ -5,12 +5,14 @@ import 'package:carros/pages/carros/carro.dart';
 import 'package:carros/pages/carros/carro_form_page.dart';
 import 'package:carros/pages/carros/carros_api.dart';
 import 'package:carros/pages/carros/loripsum_api.dart';
+import 'package:carros/pages/carros/video_page.dart';
 import 'package:carros/pages/favoritos/favorito_service.dart';
 import 'package:carros/utils/alert.dart';
 import 'package:carros/utils/event_bus.dart';
 import 'package:carros/utils/nav.dart';
 import 'package:carros/widgets/text.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class CarroPage extends StatefulWidget {
   Carro carro;
@@ -160,7 +162,15 @@ class _CarroPageState extends State<CarroPage> {
 
   void _onClickMapa() {}
 
-  void _onClickVideo() {}
+  void _onClickVideo(context) {
+    if(carro.urlVideo != null && carro.urlVideo.isNotEmpty) {
+      launch(carro.urlVideo);
+
+      push(context, VideoPage(carro));
+    } else {
+      alert(context, "Este carro não possui nenhum vídeo");
+    }
+  }
 
   _onClickPopupMenu(String value) {
     switch (value) {
@@ -191,7 +201,7 @@ class _CarroPageState extends State<CarroPage> {
 
     if(response.ok) {
       alert(context, "Carro deletado com sucesso", callback: (){
-        EventBus.get(context).sendEvent("carro_deletado");
+        EventBus.get(context).sendEvent(CarroEvent("carro_deletado",carro.tipo));
 
         pop(context);
       });
