@@ -1,10 +1,11 @@
 import 'dart:async';
 import 'dart:convert' as convert;
 import 'dart:io';
+
 import 'package:carros/pages/api_response.dart';
+import 'package:carros/utils/http_helper.dart' as http;
 import 'package:http/http.dart';
 import 'package:path/path.dart' as path;
-import 'package:carros/utils/http_helper.dart' as http;
 
 class UploadApi {
   static Future<ApiResponse<String>> upload(File file) async {
