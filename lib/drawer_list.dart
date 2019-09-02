@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 class DrawerList extends StatelessWidget {
   UserAccountsDrawerHeader _header(FirebaseUser user) {
     return UserAccountsDrawerHeader(
-      accountName: Text(user.displayName),
+      accountName: Text(user.displayName ?? ""),
       accountEmail: Text(user.email),
       currentAccountPicture: user.photoUrl != null
           ? CircleAvatar(
