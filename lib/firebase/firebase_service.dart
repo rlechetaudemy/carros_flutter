@@ -73,6 +73,38 @@ class FirebaseService {
     }
   }
 
+  Future<Response> cadastrar(String nome, String email, String senha, {File file}) async {
+    try {
+      // Usuario do Firebase
+      final FirebaseUser fUser = await _auth.createUserWithEmailAndPassword(email: email, password: senha);
+      print("Usuario criado: ${fUser.displayName}");
+
+      final userUpdateInfo = UserUpdateInfo();
+      userUpdateInfo.displayName = nome;
+      userUpdateInfo.photoUrl = "https://s3-sa-east-1.amazonaws.com/livetouch-temp/livrows/foto.png";
+
+      if(file != null) {
+        // Upload da foto
+        userUpdateInfo.photoUrl = await FirebaseService.uploadFirebaseStorage(file);
+      }
+
+      fUser.updateProfile(userUpdateInfo);
+
+      // Resposta genérica
+      return Response(true,"Usuário criado com sucesso");
+    } catch(error) {
+      print(error);
+
+      if(error is PlatformException) {
+        print("Error Code ${error.code}");
+
+        return Response(false,"Erro ao criar um usuário.\n\n${error.message}");
+      }
+
+      return Response(false,"Não foi possível criar um usuário.");
+    }
+  }
+
   Future<void> logout() async {
     await _auth.signOut();
     await _googleSignIn.signOut();
