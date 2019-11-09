@@ -1,5 +1,6 @@
 import 'package:carros/firebase/firebase_service.dart';
 import 'package:carros/pages/api_response.dart';
+import 'package:carros/pages/cadastro/cadastro_page.dart';
 import 'package:carros/pages/carros/home_page.dart';
 import 'package:carros/pages/login/login_bloc.dart';
 import 'package:carros/utils/alert.dart';
@@ -86,6 +87,22 @@ class _LoginPageState extends State<LoginPage> {
               child: GoogleSignInButton(
                 onPressed: _onClickGoogle,
               ),
+            ),
+            Container(
+              height: 46,
+              margin: EdgeInsets.only(top: 20),
+              child: InkWell(
+                onTap: _onClickCadastrar,
+                child: Text(
+                  "Cadastre-se",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline
+                  ),
+                ),
+              ),
             )
           ],
         ),
@@ -94,7 +111,6 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _onClickGoogle() async {
-
     final service = FirebaseService();
     ApiResponse response = await service.loginGoogle();
 
@@ -118,7 +134,6 @@ class _LoginPageState extends State<LoginPage> {
     ApiResponse response = await _bloc.login(login, senha);
 
     if (response.ok) {
-
       push(context, HomePage(), replace: true);
     } else {
       alert(context, response.msg);
@@ -140,6 +155,10 @@ class _LoginPageState extends State<LoginPage> {
       return "A senha precisa ter pelo menos 3 números";
     }
     return null;
+  }
+
+  void _onClickCadastrar() async {
+    push(context, CadastroPage(),replace:true);
   }
 
   @override
