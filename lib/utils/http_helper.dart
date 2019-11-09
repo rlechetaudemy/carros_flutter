@@ -1,4 +1,3 @@
-import 'package:carros/pages/login/usuario.dart';
 import 'package:http/http.dart' as http;
 
 Future<http.Response> get(String url) async {

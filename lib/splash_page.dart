@@ -1,6 +1,5 @@
 import 'package:carros/pages/carros/home_page.dart';
 import 'package:carros/pages/login/login_page.dart';
-import 'package:carros/pages/login/usuario.dart';
 import 'package:carros/utils/nav.dart';
 import 'package:carros/utils/sql/db_helper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -14,6 +13,7 @@ class SplashPage extends StatefulWidget {
 class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
+    super.initState();
 
     // Inicializar o banco de dados
     Future futureA = DatabaseHelper.getInstance().db;

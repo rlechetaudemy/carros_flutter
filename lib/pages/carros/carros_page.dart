@@ -8,7 +8,7 @@ import 'package:carros/widgets/text_error.dart';
 import 'package:flutter/material.dart';
 
 class CarrosPage extends StatefulWidget {
-  String tipo;
+  final String tipo;
 
   CarrosPage(this.tipo);
 

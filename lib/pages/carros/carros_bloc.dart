@@ -38,6 +38,7 @@ class CarrosBloc {
       if(! _streamController.isClosed) {
         _streamController.addError(e);
       }
+      return [];
     }
   }
 

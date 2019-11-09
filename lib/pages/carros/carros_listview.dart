@@ -5,7 +5,7 @@ import 'package:carros/utils/nav.dart';
 import 'package:flutter/material.dart';
 
 class CarrosListView extends StatelessWidget {
-  List<Carro> carros;
+  final List<Carro> carros;
 
   CarrosListView(this.carros);
 

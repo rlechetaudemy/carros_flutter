@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:carros/pages/api_response.dart';
 import 'package:carros/pages/login/usuario.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class FirebaseService {
@@ -12,17 +15,17 @@ class FirebaseService {
 
       // Login no Firebase
       AuthResult result = await _auth.signInWithEmailAndPassword(email: email, password: senha);
-      final FirebaseUser fuser = result.user;
-      print("Firebase Nome: ${fuser.displayName}");
-      print("Firebase Email: ${fuser.email}");
-      print("Firebase Foto: ${fuser.photoUrl}");
+      final FirebaseUser fUser = result.user;
+      print("Firebase Nome: ${fUser.displayName}");
+      print("Firebase Email: ${fUser.email}");
+      print("Firebase Foto: ${fUser.photoUrl}");
 
       // Cria um usuario do app
       final user = Usuario(
-        nome: fuser.displayName,
-        login: fuser.email,
-        email: fuser.email,
-        urlFoto: fuser.photoUrl,
+        nome: fUser.displayName,
+        login: fUser.email,
+        email: fUser.email,
+        urlFoto: fUser.photoUrl,
       );
       user.save();
 
@@ -51,17 +54,17 @@ class FirebaseService {
 
       // Login no Firebase
       AuthResult result = await _auth.signInWithCredential(credential);
-      final FirebaseUser fuser = result.user;
-      print("Firebase Nome: ${fuser.displayName}");
-      print("Firebase Email: ${fuser.email}");
-      print("Firebase Foto: ${fuser.photoUrl}");
+      final FirebaseUser fUser = result.user;
+      print("Firebase Nome: ${fUser.displayName}");
+      print("Firebase Email: ${fUser.email}");
+      print("Firebase Foto: ${fUser.photoUrl}");
 
       // Cria um usuario do app
       final user = Usuario(
-        nome: fuser.displayName,
-        login: fuser.email,
-        email: fuser.email,
-        urlFoto: fuser.photoUrl,
+        nome: fUser.displayName,
+        login: fUser.email,
+        email: fUser.email,
+        urlFoto: fUser.photoUrl,
       );
       user.save();
 
@@ -73,11 +76,14 @@ class FirebaseService {
     }
   }
 
-  Future<Response> cadastrar(String nome, String email, String senha, {File file}) async {
+  Future<ApiResponse> cadastrar(String nome, String email, String senha, {File file}) async {
     try {
       // Usuario do Firebase
-      final FirebaseUser fUser = await _auth.createUserWithEmailAndPassword(email: email, password: senha);
-      print("Usuario criado: ${fUser.displayName}");
+      AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: senha);
+      final FirebaseUser fUser = result.user;
+      print("Firebase Nome: ${fUser.displayName}");
+      print("Firebase Email: ${fUser.email}");
+      print("Firebase Foto: ${fUser.photoUrl}");
 
       final userUpdateInfo = UserUpdateInfo();
       userUpdateInfo.displayName = nome;
@@ -85,23 +91,23 @@ class FirebaseService {
 
       if(file != null) {
         // Upload da foto
-        userUpdateInfo.photoUrl = await FirebaseService.uploadFirebaseStorage(file);
+//        userUpdateInfo.photoUrl = await FirebaseService.uploadFirebaseStorage(file);
       }
 
       fUser.updateProfile(userUpdateInfo);
 
       // Resposta genérica
-      return Response(true,"Usuário criado com sucesso");
+      return ApiResponse.ok(msg:"Usuário criado com sucesso");
     } catch(error) {
       print(error);
 
       if(error is PlatformException) {
         print("Error Code ${error.code}");
 
-        return Response(false,"Erro ao criar um usuário.\n\n${error.message}");
+        return ApiResponse.error(msg: "Erro ao criar um usuário.\n\n${error.message}");
       }
 
-      return Response(false,"Não foi possível criar um usuário.");
+      return ApiResponse.error(msg: "Não foi possível criar um usuário.");
     }
   }
 

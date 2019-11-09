@@ -1,5 +1,6 @@
 import 'package:carros/firebase/firebase_service.dart';
 import 'package:carros/pages/carros/home_page.dart';
+import 'package:carros/pages/login/login_page.dart';
 import 'package:carros/utils/alert.dart';
 import 'package:carros/utils/nav.dart';
 import 'package:flutter/material.dart';
@@ -179,7 +180,7 @@ class _CadastroPageState extends State<CadastroPage> {
   }
 
   _onClickCancelar(context) {
-    pushReplacement(context,LoginPage());
+    push(context,LoginPage(), replace: true);
   }
 
   _onClickCadastrar(context) async {
@@ -202,10 +203,10 @@ class _CadastroPageState extends State<CadastroPage> {
     final service = FirebaseService();
     final response = await service.cadastrar(nome, email, senha);
 
-    if (response.isOk()) {
+    if (response.ok) {
       push(context, HomePage(),replace:true);
     } else {
-      alert(context, "Erro", response.msg);
+      alert(context, response.msg);
     }
 
     setState(() {

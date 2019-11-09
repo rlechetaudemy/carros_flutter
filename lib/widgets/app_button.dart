@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AppButton extends StatelessWidget {
-  String text;
-  Function onPressed;
-  bool showProgress;
+  final String text;
+  final Function onPressed;
+  final bool showProgress;
 
   AppButton(this.text, {this.onPressed, this.showProgress = false});
 
