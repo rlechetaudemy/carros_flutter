@@ -76,7 +76,7 @@ class FirebaseService {
     }
   }
 
-  Future<ApiResponse> cadastrar(String nome, String email, String senha, {File file}) async {
+  Future<ApiResponse> cadastrar(String nome, String email, String senha) async {
     try {
       // Usuario do Firebase
       AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: senha);
@@ -85,14 +85,10 @@ class FirebaseService {
       print("Firebase Email: ${fUser.email}");
       print("Firebase Foto: ${fUser.photoUrl}");
 
+      // Dados para atualizar o usuário
       final userUpdateInfo = UserUpdateInfo();
       userUpdateInfo.displayName = nome;
       userUpdateInfo.photoUrl = "https://s3-sa-east-1.amazonaws.com/livetouch-temp/livrows/foto.png";
-
-      if(file != null) {
-        // Upload da foto
-//        userUpdateInfo.photoUrl = await FirebaseService.uploadFirebaseStorage(file);
-      }
 
       fUser.updateProfile(userUpdateInfo);
 
