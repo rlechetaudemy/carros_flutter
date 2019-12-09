@@ -104,12 +104,14 @@ class _CarroPageState extends State<CarroPage> {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            text(widget.carro.nome, fontSize: 20, bold: true),
-            text(widget.carro.tipo, fontSize: 16)
-          ],
+        Flexible(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              text(widget.carro.nome, fontSize: 20, bold: true),
+              text(widget.carro.tipo, fontSize: 16)
+            ],
+          ),
         ),
         Row(
           children: <Widget>[
