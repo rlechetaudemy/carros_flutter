@@ -15,8 +15,8 @@ class LoginBloc {
 
     _streamController.add(true);
 
-//    ApiResponse response = await LoginApi.login(login, senha);
-    ApiResponse response = await FirebaseService().login(login, senha);
+    ApiResponse response = await LoginApi.login(login, senha);
+//    ApiResponse response = await FirebaseService().login(login, senha);
 
     _streamController.add(false);
 

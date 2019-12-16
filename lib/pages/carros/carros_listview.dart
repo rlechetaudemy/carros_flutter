@@ -1,33 +1,66 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carros/pages/carros/carro.dart';
 import 'package:carros/pages/carros/carro_page.dart';
+import 'package:carros/pages/carros/carros_api.dart';
 import 'package:carros/utils/nav.dart';
 import 'package:flutter/material.dart';
 
-class CarrosListView extends StatelessWidget {
-  List<Carro> carros;
+class CarrosListView extends StatefulWidget {
+  final String tipo;
+  CarrosListView(this.tipo);
 
-  CarrosListView(this.carros);
+  @override
+  _CarrosListViewState createState() => _CarrosListViewState();
+}
+
+class _CarrosListViewState extends State<CarrosListView>
+    with AutomaticKeepAliveClientMixin<CarrosListView> {
+  List<Carro> carros;
+  @override
+  bool get wantKeepAlive => true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _loadData();
+  }
+
+  _loadData() async {
+    List<Carro> carros = await CarrosApi.getCarros(widget.tipo);
+    setState(()  => this.carros = carros);
+
+  }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
+
+    if (carros == null) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
+
+    return _listView(carros);
+  }
+
+  Container _listView(List<Carro> carros) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: EdgeInsets.all(4),
       child: ListView.builder(
-        itemCount: carros.length,
+        itemCount: carros != null ? carros.length : 0,
         itemBuilder: (context, index) {
           Carro c = carros[index];
 
           return Card(
-            color: Colors.grey[100],
+            elevation: 5,
             child: Container(
               padding: EdgeInsets.all(10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
                   Center(
-                    child: CachedNetworkImage(
-                      imageUrl:
+                    child: Image.network(
                       c.urlFoto ??
                           "http://www.livroandroid.com.br/livro/carros/esportivos/Ferrari_FF.png",
                       width: 250,
@@ -40,23 +73,20 @@ class CarrosListView extends StatelessWidget {
                     style: TextStyle(fontSize: 25),
                   ),
                   Text(
-                    "descrição...",
+                    "Descrição...",
                     style: TextStyle(fontSize: 16),
                   ),
                   ButtonBarTheme(
                     data: ButtonBarTheme.of(context),
-                    // make buttons use the appropriate styles for cards
                     child: ButtonBar(
                       children: <Widget>[
                         FlatButton(
                           child: const Text('DETALHES'),
-                          onPressed: () => _onClickCarro(context,c),
+                          onPressed: () => _onClickCarro(c),
                         ),
                         FlatButton(
                           child: const Text('SHARE'),
-                          onPressed: () {
-                            /* ... */
-                          },
+                          onPressed: () {/* ... */},
                         ),
                       ],
                     ),
@@ -70,7 +100,12 @@ class CarrosListView extends StatelessWidget {
     );
   }
 
-  _onClickCarro(context,Carro c) {
+  _onClickCarro(Carro c) {
     push(context, CarroPage(c));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }

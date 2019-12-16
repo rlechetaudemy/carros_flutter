@@ -29,7 +29,7 @@ dependencies:
   provider: ^3.1.0
   url_launcher: ^5.1.2
   video_player: ^0.10.0+2
-  google_maps_flutter: ^0.5.21
+  google_maps_flutter: ^0.5.21+15
 
   #Firebase
   flutter_auth_buttons: ^0.5.0

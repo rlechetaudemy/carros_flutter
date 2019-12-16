@@ -67,7 +67,7 @@ class _CarrosPageState extends State<CarrosPage>
 
         return RefreshIndicator(
           onRefresh: _onRefresh,
-          child: CarrosListView(carros),
+          child: CarrosListView("classicos"),
         );
       },
     );

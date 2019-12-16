@@ -96,14 +96,7 @@ class _LoginPageState extends State<LoginPage> {
 
   _onClickGoogle() async {
 
-    final service = FirebaseService();
-    ApiResponse response = await service.loginGoogle();
-
-    if (response.ok) {
-      push(context, HomePage(), replace: true);
-    } else {
-      alert(context, response.msg);
-    }
+    alert(context,"Os exemplos do Firebase estão nas outras branchs.\n\nLembre-se de criar o projeto no Firebase conforme demonstrado nas aulas, e substituir os arquivos de configuração do Firebase para Android/iOS.");
   }
 
   void _onClickLogin() async {
