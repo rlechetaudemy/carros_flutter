@@ -39,7 +39,7 @@ class _FavoritosPageState extends State<FavoritosPage>
 
     return RefreshIndicator(
       onRefresh: _onRefresh,
-      child: Container(),
+      child: CarrosListView(carros),
     );
   }
 
