@@ -1,16 +1,9 @@
 # carros
 
-A new Flutter application.
+App dos carros feito no curso de Flutter Essencial.
 
-## Getting Started
+A branch master contém o aplicativo até a aula de Google Maps.
 
-This project is a starting point for a Flutter application.
+Para as aulas de Firebase, veja o código nas outras branches.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- [Flutter Essencial](https://www.udemy.com/course/flutter-essencial/)
