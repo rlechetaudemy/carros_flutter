@@ -18,7 +18,9 @@ class CarrosBloc {
       if(! await isNetworkOn()) {
         // Busca do banco de dados
         List<Carro> carros =  await CarroDAO().findAllByTipo(tipo);
-        _streamController.add(carros);
+        if(! _streamController.isClosed) {
+          _streamController.add(carros);
+        }
         return carros;
       }
 
