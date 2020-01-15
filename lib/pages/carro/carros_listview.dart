@@ -1,9 +1,6 @@
 
-import 'dart:async';
-
 import 'package:carros/pages/carro/carro.dart';
 import 'package:carros/pages/carro/carro_page.dart';
-import 'package:carros/pages/carro/carros_api.dart';
 import 'package:carros/pages/carro/carros_bloc.dart';
 import 'package:carros/utils/nav.dart';
 import 'package:carros/widgets/text_error.dart';
@@ -89,8 +86,7 @@ class _CarrosListViewState extends State<CarrosListView> with AutomaticKeepAlive
                     "descrição...",
                     style: TextStyle(fontSize: 16),
                   ),
-                  ButtonBarTheme(
-                    data: ButtonBarThemeData(),
+                  ButtonTheme.bar(
                     child: ButtonBar(
                       children: <Widget>[
                         FlatButton(
