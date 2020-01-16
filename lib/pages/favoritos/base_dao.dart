@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:carros/pages/carros/carro.dart';
 import 'package:carros/pages/favoritos/db_helper.dart';
 import 'package:carros/pages/favoritos/entity.dart';
 import 'package:sqflite/sqflite.dart';
