@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:carros/pages/api_response.dart';
 import 'package:carros/pages/login/usuario.dart';
 import 'package:firebase_auth/firebase_auth.dart';
