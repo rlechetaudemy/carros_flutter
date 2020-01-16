@@ -128,7 +128,7 @@ class _CarroFormPageState extends State<CarroFormPage> {
               _file,
               height: 150,
             )
-          : carro != null
+          : carro != null && carro.urlFoto != null
               ? CachedNetworkImage(
                   imageUrl: carro.urlFoto,
                   height: 150,
