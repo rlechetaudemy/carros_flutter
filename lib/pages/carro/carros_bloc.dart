@@ -1,6 +1,6 @@
 import 'package:carros/pages/carro/carro.dart';
 import 'package:carros/pages/carro/carros_api.dart';
-import 'package:carros/pages/carro/simple_bloc.dart';
+import 'package:carros/utils/simple_bloc.dart';
 
 class CarrosBloc extends SimpleBloc<List<Carro>> {
 
