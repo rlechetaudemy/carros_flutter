@@ -2,24 +2,18 @@ import 'dart:async';
 
 import 'package:http/http.dart' as http;
 
-class LoripsumBloc {
+import 'package:carros/utils/simple_bloc.dart';
+
+class LoripsumBloc extends SimpleBloc<String> {
 
   static String lorim;
-
-  final _streamController = StreamController<String>();
-
-  Stream<String> get stream => _streamController.stream;
 
   fetch() async {
     String s = lorim ?? await LoripsumApi.getLoripsum();
 
     lorim = s;
 
-    _streamController.add(s);
-  }
-
-  void dispose() {
-    _streamController.close();
+    add(s);
   }
 }
 
