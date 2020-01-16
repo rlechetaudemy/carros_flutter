@@ -13,24 +13,22 @@ class LoripsumBloc extends SimpleBloc<String> {
 
     lorim = s;
 
-    print("1 > lorim: ${s.length}");
     add(s);
-    print("3 > add :-)");
   }
 }
 
 class LoripsumApi {
   static Future<String> getLoripsum() async {
 
-    /*var url = 'https://loripsum.net/api';
+    var url = 'https://loripsum.net/api';
 
     print("GET > $url");
 
     var response = await http.get(url);
 
-    String text = response.body;*/
+    String text = response.body;
 
-    String text = await rootBundle.loadString("assets/lorim.json");
+//    String text = await rootBundle.loadString("assets/lorim.json");
 
     text = text.replaceAll("<p>", "");
     text = text.replaceAll("</p>", "");
