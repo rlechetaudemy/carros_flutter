@@ -1,4 +1,3 @@
-import 'package:carros/main.dart';
 import 'package:carros/pages/carros/carro.dart';
 import 'package:carros/pages/carros/carros_listview.dart';
 import 'package:carros/pages/favoritos/favoritos_bloc.dart';

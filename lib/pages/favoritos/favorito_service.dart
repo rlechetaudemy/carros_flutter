@@ -1,5 +1,4 @@
 
-import 'package:carros/main.dart';
 import 'package:carros/pages/carros/carro.dart';
 import 'package:carros/pages/carros/carro_dao.dart';
 import 'package:carros/pages/favoritos/favorito.dart';
