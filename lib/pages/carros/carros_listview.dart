@@ -43,8 +43,8 @@ class CarrosListView extends StatelessWidget {
                     "descrição...",
                     style: TextStyle(fontSize: 16),
                   ),
-                  ButtonTheme.bar(
-                    // make buttons use the appropriate styles for cards
+                  ButtonBarTheme(
+                    data: ButtonBarThemeData(),
                     child: ButtonBar(
                       children: <Widget>[
                         FlatButton(

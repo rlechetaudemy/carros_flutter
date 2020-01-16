@@ -30,6 +30,6 @@ class FavoritoService {
     var documentSnapshot = await document.get();
 
     // Verifica se o carro está favoritado
-    return await documentSnapshot.exists;
+    return documentSnapshot.exists;
   }
 }

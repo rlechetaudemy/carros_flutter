@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CarroPage extends StatefulWidget {
-  Carro carro;
+  final Carro carro;
 
   CarroPage(this.carro);
 
@@ -34,7 +34,7 @@ class _CarroPageState extends State<CarroPage> {
   void initState() {
     super.initState();
 
-    FavoritoService.isFavorito(carro).then((bool favorito) {
+    FavoritoService().isFavorito(carro).then((bool favorito) {
       setState(() {
         color = favorito ? Colors.red : Colors.grey;
       });
@@ -194,7 +194,7 @@ class _CarroPageState extends State<CarroPage> {
   }
 
   void _onClickFavorito() async {
-    bool favorito = await FavoritoService.favoritar(context, carro);
+    bool favorito = await FavoritoService().favoritar(context, carro);
 
     setState(() {
       color = favorito ? Colors.red : Colors.grey;
