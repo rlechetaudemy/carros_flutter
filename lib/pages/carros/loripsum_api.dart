@@ -1,8 +1,7 @@
 import 'dart:async';
 
-import 'package:http/http.dart' as http;
-
 import 'package:carros/utils/simple_bloc.dart';
+import 'package:http/http.dart' as http;
 
 class LoripsumBloc extends SimpleBloc<String> {
 

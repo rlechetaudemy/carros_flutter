@@ -19,7 +19,7 @@ class CarrosPage extends StatefulWidget {
 class _CarrosPageState extends State<CarrosPage>
     with AutomaticKeepAliveClientMixin<CarrosPage> {
 
-  StreamSubscription<Event> subscription;
+  StreamSubscription<String> subscription;
 
   String get tipo => widget.tipo;
 
