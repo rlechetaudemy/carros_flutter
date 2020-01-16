@@ -1,4 +1,3 @@
-import 'package:carros/pages/login/login_page.dart';
 import 'package:carros/splash_page.dart';
 import 'package:flutter/material.dart';
 
