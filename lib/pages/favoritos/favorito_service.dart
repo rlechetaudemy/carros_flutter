@@ -1,48 +1,35 @@
 import 'package:carros/pages/carros/carro.dart';
-import 'package:carros/pages/carros/carro_dao.dart';
-import 'package:carros/pages/favoritos/favorito.dart';
-import 'package:carros/pages/favoritos/favorito_dao.dart';
-import 'package:carros/pages/favoritos/favoritos_model.dart';
-import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class FavoritoService {
-  static Future<bool> favoritar(context,Carro c) async {
+  CollectionReference get _carros => Firestore.instance.collection("carros");
 
-    Favorito f = Favorito.fromCarro(c);
+  Stream<QuerySnapshot> get stream => _carros.snapshots();
 
-    final dao = FavoritoDAO();
+  Future<bool> favoritar(context, Carro carro) async {
+    var document = _carros.document("${carro.id}");
+    var documentSnapshot = await document.get();
 
-    final exists = await dao.exists(c.id);
-
-    if(exists) {
-      // Remove dos favoritos
-      dao.delete(c.id);
-
-      Provider.of<FavoritosModel>(context,listen: false).getCarros();
-
-      return false;
-    } else {
-      // Adiciona nos favoritos
-      dao.save(f);
-
-      Provider.of<FavoritosModel>(context,listen: false).getCarros();
+    if (!documentSnapshot.exists) {
+      print("${carro.nome}, adicionado nos favoritos");
+      document.setData(carro.toMap());
 
       return true;
+    } else {
+      print("${carro.nome}, removido nos favoritos");
+      document.delete();
+
+      return false;
     }
   }
 
-  static Future<List<Carro>> getCarros() async {
-    // select * from carro c,favorito f where c.id = f.id
-    List<Carro> carros = await CarroDAO().query("select * from carro c,favorito f where c.id = f.id");
+  Future<bool> isFavorito(Carro carro) async {
+    // Busca o carro no Firestore
+    var document = _carros.document("${carro.id}");
 
-    return carros;
-  }
+    var documentSnapshot = await document.get();
 
-  static Future<bool> isFavorito(Carro c) async {
-    final dao = FavoritoDAO();
-
-    bool exists = await dao.exists(c.id);
-
-    return exists;
+    // Verifica se o carro está favoritado
+    return await documentSnapshot.exists;
   }
 }
