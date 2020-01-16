@@ -4,29 +4,20 @@ import 'dart:async';
 import 'package:carros/pages/carros/carro.dart';
 import 'package:carros/pages/favoritos/favorito_service.dart';
 
-class FavoritosBloc {
+import 'package:carros/utils/simple_bloc.dart';
 
-  final _streamController = StreamController<List<Carro>>();
-
-  Stream<List<Carro>> get stream => _streamController.stream;
+class FavoritosBloc extends SimpleBloc<List<Carro>>{
 
   Future<List<Carro>> fetch() async {
     try {
 
       List<Carro> carros = await FavoritoService.getCarros();
 
-      _streamController.add(carros);
+      add(carros);
 
       return carros;
     } catch (e) {
-      print(e);
-      if(! _streamController.isClosed) {
-        _streamController.addError(e);
-      }
+      addError(e);
     }
-  }
-
-  void dispose() {
-    _streamController.close();
   }
 }
