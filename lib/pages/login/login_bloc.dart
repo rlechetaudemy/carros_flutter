@@ -3,8 +3,6 @@ import 'dart:async';
 
 import 'package:carros/firebase/firebase_service.dart';
 import 'package:carros/pages/api_response.dart';
-import 'package:carros/pages/login/login_api.dart';
-import 'package:carros/pages/login/usuario.dart';
 
 class LoginBloc {
   final _streamController = StreamController<bool>();
