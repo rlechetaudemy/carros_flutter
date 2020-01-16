@@ -34,13 +34,14 @@ class _CarroPageState extends State<CarroPage> {
   void initState() {
     super.initState();
 
+    _loripsumApiBloc.fetch();
+
     FavoritoService().isFavorito(carro).then((bool favorito) {
       setState(() {
         color = favorito ? Colors.red : Colors.grey;
       });
     });
 
-    _loripsumApiBloc.fetch();
   }
 
   @override
@@ -146,7 +147,8 @@ class _CarroPageState extends State<CarroPage> {
         ),
         StreamBuilder<String>(
           stream: _loripsumApiBloc.stream,
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
+          builder: (_, snapshot) {
+            print("snapshot! ${snapshot.data?.length}");
             if (!snapshot.hasData) {
               return Center(
                 child: CircularProgressIndicator(),
