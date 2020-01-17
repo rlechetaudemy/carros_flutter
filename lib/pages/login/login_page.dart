@@ -9,6 +9,7 @@ import 'package:carros/widgets/app_button.dart';
 import 'package:carros/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
+import 'package:carros/firebase.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -29,6 +30,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
+
+    initFcm();
   }
 
   @override
