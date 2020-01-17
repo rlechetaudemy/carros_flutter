@@ -1,12 +1,13 @@
 import 'package:carros/drawer_list.dart';
-import 'package:carros/pages/carros/carro_form_page.dart';
 import 'package:carros/pages/carros/carros_api.dart';
 import 'package:carros/pages/carros/carros_page.dart';
 import 'package:carros/pages/favoritos/favoritos_page.dart';
-import 'package:carros/utils/nav.dart';
 import 'package:carros/utils/prefs.dart';
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
+import '../../utils/nav.dart';
+import 'carro_form_page.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -79,9 +80,6 @@ class _HomePageState extends State<HomePage>
   }
 
   void _onClickAdicionarCarro() {
-    Firestore.instance.collection('books').document("1")
-        .setData({ 'title': 'Teste', 'author': 'Ricardo' });
-
-    //push(context, CarroFormPage());
+    push(context, CarroFormPage());
   }
 }
