@@ -26,7 +26,6 @@ class _SplashPageState extends State<SplashPage> {
 
     Future.wait([futureA,futureB,futureC]).then((List values) {
       FirebaseUser fUser = values[2];
-      print(fUser);
 
       if (fUser != null) {
         firebaseUserUid = fUser.uid;
