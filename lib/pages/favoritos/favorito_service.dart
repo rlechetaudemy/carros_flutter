@@ -5,13 +5,13 @@ import 'package:carros/firebase/firebase_service.dart';
 class FavoritoService {
 
   // Para salvar a collection dentro do usuário logado
-  CollectionReference get _users => Firestore.instance.collection("users");
-  CollectionReference get _carros => _users.document(firebaseUserUid).collection("carros");
+  get _users => Firestore.instance.collection("users");
+  get _carros => _users.document(firebaseUserUid).collection("carros");
 
   // Para salvar apenas com a collection de carros
-//  CollectionReference get _carros => Firestore.instance.collection("carros");
+//  get _carros => Firestore.instance.collection("carros");
 
-  Stream<QuerySnapshot> get stream => _carros.snapshots();
+  get stream => _carros.snapshots();
 
   Future<bool> favoritar(Carro c) async {
 
