@@ -3,23 +3,23 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>216997426714-qevagk4ovdp8tftgjb2atlh6ljplrqtf.apps.googleusercontent.com</string>
+	<string>973833319315-1c32mmsjhjk4u0o6771epsvuiu1kmv7r.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.216997426714-qevagk4ovdp8tftgjb2atlh6ljplrqtf</string>
+	<string>com.googleusercontent.apps.973833319315-1c32mmsjhjk4u0o6771epsvuiu1kmv7r</string>
 	<key>ANDROID_CLIENT_ID</key>
-	<string>216997426714-9rqahe5ghtjqk9ep88c1clc7n82hc0ta.apps.googleusercontent.com</string>
+	<string>973833319315-hl1sueeim4e3nfva7s9mge5oneialshc.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCA45BrmCHhinO94VILzBZlkVlV5mnZ-Rk</string>
+	<string>AIzaSyA4bQZKPFhEM1UQnCSbk2xd7CbKwu-ONNo</string>
 	<key>GCM_SENDER_ID</key>
-	<string>216997426714</string>
+	<string>973833319315</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>br.com.livroandroid.carros</string>
+	<string>br.com.udemy.carros</string>
 	<key>PROJECT_ID</key>
-	<string>carros-f177d</string>
+	<string>carros-flutterweb</string>
 	<key>STORAGE_BUCKET</key>
-	<string>carros-f177d.appspot.com</string>
+	<string>carros-flutterweb.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -31,8 +31,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:216997426714:ios:cc337c3d126e9d00</string>
+	<string>1:973833319315:ios:c53a6d4efb462f0050ae66</string>
 	<key>DATABASE_URL</key>
-	<string>https://carros-f177d.firebaseio.com</string>
+	<string>https://carros-flutterweb.firebaseio.com</string>
 </dict>
 </plist>
