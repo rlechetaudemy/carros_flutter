@@ -148,7 +148,6 @@ class _CarroPageState extends State<CarroPage> {
         StreamBuilder<String>(
           stream: _loripsumApiBloc.stream,
           builder: (_, snapshot) {
-            print("snapshot! ${snapshot.data?.length}");
             if (!snapshot.hasData) {
               return Center(
                 child: CircularProgressIndicator(),
@@ -196,7 +195,7 @@ class _CarroPageState extends State<CarroPage> {
   }
 
   void _onClickFavorito() async {
-    bool favorito = await FavoritoService().favoritar(context, carro);
+    bool favorito = await FavoritoService().favoritar(carro);
 
     setState(() {
       color = favorito ? Colors.red : Colors.grey;

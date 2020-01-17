@@ -6,7 +6,8 @@ class FavoritoService {
 
   Stream<QuerySnapshot> get stream => _carros.snapshots();
 
-  Future<bool> favoritar(context, Carro carro) async {
+  Future<bool> favoritar(Carro carro) async {
+
     var document = _carros.document("${carro.id}");
     var documentSnapshot = await document.get();
 

@@ -7,7 +7,6 @@ class SimpleBloc<T> {
   ValueStream<T> get stream => _controller.stream;
 
   void add(T object) {
-    print("${_controller.isClosed}");
     if(! _controller.isClosed) {
       _controller.add(object);
     }

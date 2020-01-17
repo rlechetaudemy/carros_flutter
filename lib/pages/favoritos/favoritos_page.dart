@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../../widgets/text_error.dart';
+import 'favorito_service.dart';
 
 class FavoritosPage extends StatefulWidget {
   @override
@@ -26,7 +27,7 @@ class _FavoritosPageState extends State<FavoritosPage>
     super.build(context);
 
     return StreamBuilder<QuerySnapshot>(
-      stream: Firestore.instance.collection('carros').snapshots(),
+      stream: FavoritoService().stream,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return TextError("Não foi possível buscar os carros");
