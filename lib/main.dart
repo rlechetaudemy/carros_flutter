@@ -3,8 +3,6 @@ import 'package:carros/utils/event_bus.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'pages/favoritos/favoritos_model.dart';
-
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
@@ -15,9 +13,6 @@ class MyApp extends StatelessWidget {
         Provider<EventBus>(
           builder: (context) => EventBus(),
           dispose: (context, bus) => bus.dispose(),
-        ),
-        ChangeNotifierProvider<FavoritosModel>(
-          builder: (context) => FavoritosModel(),
         )
       ],
       child: MaterialApp(

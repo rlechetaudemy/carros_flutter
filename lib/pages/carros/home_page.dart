@@ -3,7 +3,6 @@ import 'package:carros/pages/carros/carros_api.dart';
 import 'package:carros/pages/carros/carros_page.dart';
 import 'package:carros/pages/favoritos/favoritos_page.dart';
 import 'package:carros/utils/prefs.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 import '../../utils/nav.dart';
