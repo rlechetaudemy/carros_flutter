@@ -1,9 +1,15 @@
 import 'package:carros/pages/carros/carro.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:carros/firebase/firebase_service.dart';
 
 class FavoritoService {
 
-  CollectionReference get _carros => Firestore.instance.collection("carros");
+  // Para salvar a collection dentro do usuário logado
+  CollectionReference get _users => Firestore.instance.collection("users");
+  CollectionReference get _carros => _users.document(firebaseUserUid).collection("carros");
+
+  // Para salvar apenas com a collection de carros
+//  CollectionReference get _carros => Firestore.instance.collection("carros");
 
   Stream<QuerySnapshot> get stream => _carros.snapshots();
 
@@ -37,5 +43,20 @@ class FavoritoService {
     final exists = doc.exists;
 
     return exists;
+  }
+
+  Future<bool> deleteCarros() async {
+    print("Delete carros do usuário logado: $firebaseUserUid");
+
+    // Deleta os carros
+    final query = await _carros.getDocuments();
+    for(DocumentSnapshot doc in query.documents) {
+      await doc.reference.delete();
+    }
+
+    // Deleta a referencia do usuário
+    _users.document(firebaseUserUid).delete();
+
+    return true;
   }
 }

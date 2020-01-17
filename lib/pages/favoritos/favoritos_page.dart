@@ -3,7 +3,7 @@ import 'package:carros/pages/carros/carros_listview.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../../widgets/text_error.dart';
+import 'package:carros/widgets/text_error.dart';
 import 'favorito_service.dart';
 
 class FavoritosPage extends StatefulWidget {
