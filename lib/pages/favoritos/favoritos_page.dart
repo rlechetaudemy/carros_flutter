@@ -27,7 +27,7 @@ class _FavoritosPageState extends State<FavoritosPage>
     super.build(context);
 
     return StreamBuilder<QuerySnapshot>(
-      stream: FavoritoService().stream,
+      stream: Firestore.instance.collection("carros").snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return TextError("Não foi possível buscar os carros");

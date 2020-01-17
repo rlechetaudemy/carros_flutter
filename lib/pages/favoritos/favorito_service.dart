@@ -1,36 +1,48 @@
 import 'package:carros/pages/carros/carro.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:carros/pages/carros/carro_dao.dart';
+import 'package:carros/pages/favoritos/favorito.dart';
+import 'package:carros/pages/favoritos/favorito_dao.dart';
+import 'package:carros/pages/favoritos/favoritos_model.dart';
+import 'package:provider/provider.dart';
 
 class FavoritoService {
-  CollectionReference get _carros => Firestore.instance.collection("carros");
+  static Future<bool> favoritar(context,Carro c) async {
 
-  Stream<QuerySnapshot> get stream => _carros.snapshots();
+    Favorito f = Favorito.fromCarro(c);
 
-  Future<bool> favoritar(Carro carro) async {
+    final dao = FavoritoDAO();
 
-    var document = _carros.document("${carro.id}");
-    var documentSnapshot = await document.get();
+    final exists = await dao.exists(c.id);
 
-    if (!documentSnapshot.exists) {
-      print("${carro.nome}, adicionado nos favoritos");
-      document.setData(carro.toMap());
+    if(exists) {
+      // Remove dos favoritos
+      dao.delete(c.id);
 
-      return true;
-    } else {
-      print("${carro.nome}, removido nos favoritos");
-      document.delete();
+      Provider.of<FavoritosModel>(context,listen: false).getCarros();
 
       return false;
+    } else {
+      // Adiciona nos favoritos
+      dao.save(f);
+
+      Provider.of<FavoritosModel>(context,listen: false).getCarros();
+
+      return true;
     }
   }
 
-  Future<bool> isFavorito(Carro carro) async {
-    // Busca o carro no Firestore
-    var document = _carros.document("${carro.id}");
+  static Future<List<Carro>> getCarros() async {
+    // select * from carro c,favorito f where c.id = f.id
+    List<Carro> carros = await CarroDAO().query("select * from carro c,favorito f where c.id = f.id");
 
-    var documentSnapshot = await document.get();
+    return carros;
+  }
 
-    // Verifica se o carro está favoritado
-    return documentSnapshot.exists;
+  static Future<bool> isFavorito(Carro c) async {
+    final dao = FavoritoDAO();
+
+    bool exists = await dao.exists(c.id);
+
+    return exists;
   }
 }

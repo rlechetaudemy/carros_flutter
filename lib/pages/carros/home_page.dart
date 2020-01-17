@@ -79,6 +79,9 @@ class _HomePageState extends State<HomePage>
   }
 
   void _onClickAdicionarCarro() {
-    push(context, CarroFormPage());
+    Firestore.instance.collection('books').document("1")
+        .setData({ 'title': 'Teste', 'author': 'Ricardo' });
+
+    //push(context, CarroFormPage());
   }
 }
