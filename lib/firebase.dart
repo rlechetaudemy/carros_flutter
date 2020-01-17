@@ -17,12 +17,21 @@ void initFcm() {
   fcm.configure(
     onMessage: (Map<String, dynamic> message) async {
       print('\n\n\n*** on message $message');
+
+      String nome = message['data']['nome'];
+      print("onMessage: $nome");
     },
     onResume: (Map<String, dynamic> message) async {
       print('\n\n\n*** on resume $message');
+
+      String nome = message['data']['nome'];
+      print("onResume: $nome");
     },
     onLaunch: (Map<String, dynamic> message) async {
       print('\n\n\n*** on launch $message');
+
+      String nome = message['data']['nome'];
+      print("onLaunch: $nome");
     },
   );
 
