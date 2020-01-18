@@ -2,37 +2,44 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CLIENT_ID</key>
-	<string>973833319315-isfvs7902oiv4kiqijoab64n7phtrgta.apps.googleusercontent.com</string>
-	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.973833319315-isfvs7902oiv4kiqijoab64n7phtrgta</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>973833319315-hl1sueeim4e3nfva7s9mge5oneialshc.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyA4bQZKPFhEM1UQnCSbk2xd7CbKwu-ONNo</string>
-	<key>GCM_SENDER_ID</key>
-	<string>973833319315</string>
-	<key>PLIST_VERSION</key>
-	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>br.com.livroandroid.carros</string>
-	<key>PROJECT_ID</key>
-	<string>carros-flutterweb</string>
-	<key>STORAGE_BUCKET</key>
-	<string>carros-flutterweb.appspot.com</string>
-	<key>IS_ADS_ENABLED</key>
-	<false></false>
-	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
-	<key>IS_APPINVITE_ENABLED</key>
-	<true></true>
-	<key>IS_GCM_ENABLED</key>
-	<true></true>
-	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
-	<key>GOOGLE_APP_ID</key>
-	<string>1:973833319315:ios:cda478b71a9e60a750ae66</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CLIENT_ID</key>
+	<string>973833319315-isfvs7902oiv4kiqijoab64n7phtrgta.apps.googleusercontent.com</string>
 	<key>DATABASE_URL</key>
 	<string>https://carros-flutterweb.firebaseio.com</string>
+	<key>GCM_SENDER_ID</key>
+	<string>973833319315</string>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:973833319315:ios:cda478b71a9e60a750ae66</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>PROJECT_ID</key>
+	<string>carros-flutterweb</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.973833319315-isfvs7902oiv4kiqijoab64n7phtrgta</string>
+	<key>STORAGE_BUCKET</key>
+	<string>carros-flutterweb.appspot.com</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>
