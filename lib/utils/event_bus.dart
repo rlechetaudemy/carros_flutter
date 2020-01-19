@@ -1,25 +1,16 @@
-
-import 'dart:async';
-
 import 'package:provider/provider.dart';
+
+import 'simple_bloc.dart';
 
 class Event {
 
 }
 
-class EventBus {
+class EventBus extends SimpleBloc<Event> {
 
   static EventBus get(context) => Provider.of<EventBus>(context, listen: false);
 
-  final _streamController = StreamController<Event>.broadcast();
-
-  Stream<Event> get stream => _streamController.stream;
-
   sendEvent(Event event) {
-    _streamController.add(event);
-  }
-
-  dispose() {
-    _streamController.close();
+    add(event);
   }
 }

@@ -5,7 +5,7 @@ import 'package:carros/utils/nav.dart';
 import 'package:flutter/material.dart';
 
 class CarrosListView extends StatelessWidget {
-  List<Carro> carros;
+  final List<Carro> carros;
 
   CarrosListView(this.carros);
 
@@ -44,8 +44,7 @@ class CarrosListView extends StatelessWidget {
                     style: TextStyle(fontSize: 16),
                   ),
                   ButtonBarTheme(
-                    data: ButtonBarTheme.of(context),
-                    // make buttons use the appropriate styles for cards
+                    data: ButtonBarThemeData(),
                     child: ButtonBar(
                       children: <Widget>[
                         FlatButton(

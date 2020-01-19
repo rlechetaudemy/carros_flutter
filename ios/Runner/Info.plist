@@ -2,73 +2,44 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <!-- Put me in the [my_project]/ios/Runner/Info.plist file -->
-    <!-- Google Sign-in Section -->
-    <key>CFBundleURLTypes</key>
-    <array>
-        <dict>
-            <key>CFBundleTypeRole</key>
-            <string>Editor</string>
-            <key>CFBundleURLSchemes</key>
-            <array>
-                <!-- TODO Replace this value: -->
-                <!-- Copied from GoogleService-Info.plist key REVERSED_CLIENT_ID -->
-                <string>com.googleusercontent.apps.216997426714-qevagk4ovdp8tftgjb2atlh6ljplrqtf</string>
-            </array>
-        </dict>
-    </array>
-    <!-- End of the Google Sign-in Section -->
-    <key>io.flutter.embedded_views_preview</key>
-	<string>YES</string>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-      <key>NSAllowsArbitraryLoads</key>
-      <true/>
-    </dict>
-    <key>NSMicrophoneUsageDescription</key>
-    <string>Este aplicativo precisa acessar o microfone</string>
-    <key>NSCameraUsageDescription</key>
-    <string>Este aplicativo precisa tirar fotos</string>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Este aplicativo precisa acessar a galera de fotos</string>
-	<key>CFBundleDevelopmentRegion</key>
-	<string>$(DEVELOPMENT_LANGUAGE)</string>
-	<key>CFBundleExecutable</key>
-	<string>$(EXECUTABLE_NAME)</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>973833319315-hl1sueeim4e3nfva7s9mge5oneialshc.apps.googleusercontent.com</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA4bQZKPFhEM1UQnCSbk2xd7CbKwu-ONNo</string>
+	<key>BUNDLE_ID</key>
+	<string>br.com.livroandroid.carros</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
-	<key>CFBundleInfoDictionaryVersion</key>
-	<string>6.0</string>
-	<key>CFBundleName</key>
-	<string>carros</string>
-	<key>CFBundlePackageType</key>
-	<string>APPL</string>
-	<key>CFBundleShortVersionString</key>
-	<string>$(FLUTTER_BUILD_NAME)</string>
-	<key>CFBundleSignature</key>
-	<string>????</string>
-	<key>CFBundleVersion</key>
-	<string>$(FLUTTER_BUILD_NUMBER)</string>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<key>CLIENT_ID</key>
+	<string>973833319315-isfvs7902oiv4kiqijoab64n7phtrgta.apps.googleusercontent.com</string>
+	<key>DATABASE_URL</key>
+	<string>https://carros-flutterweb.firebaseio.com</string>
+	<key>GCM_SENDER_ID</key>
+	<string>973833319315</string>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:973833319315:ios:cda478b71a9e60a750ae66</string>
+	<key>IS_ADS_ENABLED</key>
 	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>PROJECT_ID</key>
+	<string>carros-flutterweb</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.973833319315-isfvs7902oiv4kiqijoab64n7phtrgta</string>
+	<key>STORAGE_BUCKET</key>
+	<string>carros-flutterweb.appspot.com</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>fetch</string>
+		<string>remote-notification</string>
+	</array>
 </dict>
 </plist>

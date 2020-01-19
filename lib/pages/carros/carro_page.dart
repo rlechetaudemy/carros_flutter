@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class CarroPage extends StatefulWidget {
-  Carro carro;
+  final Carro carro;
 
   CarroPage(this.carro);
 
@@ -34,13 +34,14 @@ class _CarroPageState extends State<CarroPage> {
   void initState() {
     super.initState();
 
-    FavoritoService.isFavorito(carro).then((bool favorito) {
+    _loripsumApiBloc.fetch();
+
+    FavoritoService().isFavorito(carro).then((bool favorito) {
       setState(() {
         color = favorito ? Colors.red : Colors.grey;
       });
     });
 
-    _loripsumApiBloc.fetch();
   }
 
   @override
@@ -148,7 +149,7 @@ class _CarroPageState extends State<CarroPage> {
         ),
         StreamBuilder<String>(
           stream: _loripsumApiBloc.stream,
-          builder: (BuildContext context, AsyncSnapshot snapshot) {
+          builder: (_, snapshot) {
             if (!snapshot.hasData) {
               return Center(
                 child: CircularProgressIndicator(),
@@ -196,7 +197,7 @@ class _CarroPageState extends State<CarroPage> {
   }
 
   void _onClickFavorito() async {
-    bool favorito = await FavoritoService.favoritar(context, carro);
+    bool favorito = await FavoritoService().favoritar(carro);
 
     setState(() {
       color = favorito ? Colors.red : Colors.grey;

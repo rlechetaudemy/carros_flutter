@@ -1,14 +1,15 @@
 import 'package:carros/firebase/firebase_service.dart';
 import 'package:carros/pages/api_response.dart';
+import 'package:carros/pages/cadastro/cadastro_page.dart';
 import 'package:carros/pages/carros/home_page.dart';
 import 'package:carros/pages/login/login_bloc.dart';
-import 'package:carros/pages/login/usuario.dart';
 import 'package:carros/utils/alert.dart';
 import 'package:carros/utils/nav.dart';
 import 'package:carros/widgets/app_button.dart';
 import 'package:carros/widgets/app_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_buttons/flutter_auth_buttons.dart';
+import 'package:carros/firebase.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -29,6 +30,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void initState() {
     super.initState();
+
+    initFcm();
   }
 
   @override
@@ -87,6 +90,22 @@ class _LoginPageState extends State<LoginPage> {
               child: GoogleSignInButton(
                 onPressed: _onClickGoogle,
               ),
+            ),
+            Container(
+              height: 46,
+              margin: EdgeInsets.only(top: 20),
+              child: InkWell(
+                onTap: _onClickCadastrar,
+                child: Text(
+                  "Cadastre-se",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 22,
+                    color: Colors.blue,
+                    decoration: TextDecoration.underline
+                  ),
+                ),
+              ),
             )
           ],
         ),
@@ -95,8 +114,14 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   _onClickGoogle() async {
+    final service = FirebaseService();
+    ApiResponse response = await service.loginGoogle();
 
-    alert(context,"Os exemplos do Firebase estão nas outras branchs.\n\nLembre-se de criar o projeto no Firebase conforme demonstrado nas aulas, e substituir os arquivos de configuração do Firebase para Android/iOS.");
+    if (response.ok) {
+      push(context, HomePage(), replace: true);
+    } else {
+      alert(context, response.msg);
+    }
   }
 
   void _onClickLogin() async {
@@ -112,7 +137,6 @@ class _LoginPageState extends State<LoginPage> {
     ApiResponse response = await _bloc.login(login, senha);
 
     if (response.ok) {
-
       push(context, HomePage(), replace: true);
     } else {
       alert(context, response.msg);
@@ -134,6 +158,10 @@ class _LoginPageState extends State<LoginPage> {
       return "A senha precisa ter pelo menos 3 números";
     }
     return null;
+  }
+
+  void _onClickCadastrar() async {
+    push(context, CadastroPage(),replace:true);
   }
 
   @override
