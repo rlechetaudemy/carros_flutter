@@ -21,9 +21,10 @@ class _HomePageState extends State<HomePage>
   }
 
   _initTabs() async {
-    _tabController = TabController(length: 3, vsync: this);
 
     int tabIdx = await Prefs.getInt("tabIdx");
+
+    _tabController = TabController(length: 3, vsync: this);
     _tabController.index = tabIdx;
 
     _tabController.addListener(() {
