@@ -21,14 +21,12 @@ class _HomePageState extends State<HomePage>
   }
 
   _initTabs() async {
-
     _tabController = TabController(length: 3, vsync: this);
 
-    _tabController.index = await Prefs.getInt("tabIdx");
+    int tabIdx = await Prefs.getInt("tabIdx");
+    _tabController.index = tabIdx;
 
-    _tabController.addListener((){
-      print("Tab ${_tabController.index}");
-
+    _tabController.addListener(() {
       Prefs.setInt("tabIdx", _tabController.index);
     });
   }
@@ -38,29 +36,35 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       appBar: AppBar(
         title: Text("Carros"),
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: [
-            Tab(
-              text: "Clássicos",
-            ),
-            Tab(
-              text: "Esportivos",
-            ),
-            Tab(
-              text: "Luxo",
+        bottom: _tabController == null
+            ? null
+            : TabBar(
+                controller: _tabController,
+                tabs: [
+                  Tab(
+                    text: "Clássicos",
+                  ),
+                  Tab(
+                    text: "Esportivos",
+                  ),
+                  Tab(
+                    text: "Luxo",
+                  )
+                ],
+              ),
+      ),
+      body: _tabController == null
+          ? Center(
+              child: CircularProgressIndicator(),
             )
-          ],
-        ),
-      ),
-      body: TabBarView(
-        controller: _tabController,
-        children: [
-          CarrosListView(TipoCarro.classicos),
-          CarrosListView(TipoCarro.esportivos),
-          CarrosListView(TipoCarro.luxo),
-        ],
-      ),
+          : TabBarView(
+              controller: _tabController,
+              children: [
+                CarrosListView(TipoCarro.classicos),
+                CarrosListView(TipoCarro.esportivos),
+                CarrosListView(TipoCarro.luxo),
+              ],
+            ),
       drawer: DrawerList(),
     );
   }
