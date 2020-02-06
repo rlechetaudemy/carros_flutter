@@ -20,4 +20,20 @@ class CarrosBloc extends SimpleBloc<List<Carro>>{
 
     return [];
   }
+
+  Future<List<Carro>> search(String query) async {
+    try {
+      List<Carro> carros = await CarrosApi.search(query);
+
+      print("Search ${carros.length} carros");
+
+      add(carros);
+
+      return carros;
+    } catch (e) {
+      addError(e);
+    }
+
+    return [];
+  }
 }

@@ -10,6 +10,7 @@ class AppText extends StatelessWidget {
   final TextInputAction textInputAction;
   final FocusNode focusNode;
   final FocusNode nextFocus;
+  final ValueChanged<String> onChanged;
 
   AppText(
     this.label,
@@ -21,6 +22,7 @@ class AppText extends StatelessWidget {
     this.textInputAction,
     this.focusNode,
     this.nextFocus,
+    this.onChanged,
   });
 
   @override
@@ -32,6 +34,7 @@ class AppText extends StatelessWidget {
       keyboardType: keyboardType,
       textInputAction: textInputAction,
       focusNode: focusNode,
+      onChanged: onChanged,
       onFieldSubmitted: (String text) {
         if (nextFocus != null) {
           FocusScope.of(context).requestFocus(nextFocus);

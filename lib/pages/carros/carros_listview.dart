@@ -15,6 +15,7 @@ class CarrosListView extends StatelessWidget {
       padding: EdgeInsets.all(16),
       child: ListView.builder(
         itemCount: carros.length,
+        shrinkWrap: true,
         itemBuilder: (context, index) {
           Carro c = carros[index];
 
@@ -27,8 +28,7 @@ class CarrosListView extends StatelessWidget {
                 children: <Widget>[
                   Center(
                     child: CachedNetworkImage(
-                      imageUrl:
-                      c.urlFoto ??
+                      imageUrl: c.urlFoto ??
                           "http://www.livroandroid.com.br/livro/carros/esportivos/Ferrari_FF.png",
                       width: 250,
                     ),
@@ -49,7 +49,7 @@ class CarrosListView extends StatelessWidget {
                       children: <Widget>[
                         FlatButton(
                           child: const Text('DETALHES'),
-                          onPressed: () => _onClickCarro(context,c),
+                          onPressed: () => _onClickCarro(context, c),
                         ),
                         FlatButton(
                           child: const Text('SHARE'),
@@ -69,7 +69,7 @@ class CarrosListView extends StatelessWidget {
     );
   }
 
-  _onClickCarro(context,Carro c) {
+  _onClickCarro(context, Carro c) {
     push(context, CarroPage(c));
   }
 }

@@ -13,6 +13,23 @@ class TipoCarro {
 }
 
 class CarrosApi {
+  static Future<List<Carro>> search(String query) async {
+    var url =
+        'https://carros-springboot.herokuapp.com/api/v1/carros/search?query=$query';
+
+    print("GET > $url");
+
+    var response = await http.get(url);
+
+    String json = response.body;
+
+    List list = convert.json.decode(json);
+
+    List<Carro> carros = list.map<Carro>((map) => Carro.fromMap(map)).toList();
+
+    return carros;
+  }
+
   static Future<List<Carro>> getCarros(String tipo) async {
     var url =
         'https://carros-springboot.herokuapp.com/api/v1/carros/tipo/$tipo';

@@ -1,3 +1,4 @@
+import 'package:carros/pages/carros/carros_search_page.dart';
 import 'package:carros/splash_page.dart';
 import 'package:carros/utils/event_bus.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
           brightness: Brightness.light,
           scaffoldBackgroundColor: Colors.white
         ),
-        home: SplashPage(),
+        home: CarrosSearchPage(),
       ),
     );
   }
