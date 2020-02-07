@@ -24,13 +24,15 @@ class _HomePageState extends State<HomePage>
   }
 
   _initTabs() async {
+    int tabIdx = await Prefs.getInt("tabIdx");
 
     _tabController = TabController(length: 4, vsync: this);
 
-    _tabController.index = await Prefs.getInt("tabIdx");
+    setState(() {
+      _tabController.index = tabIdx;
+    });
 
-    _tabController.addListener((){
-
+    _tabController.addListener(() {
       Prefs.setInt("tabIdx", _tabController.index);
     });
   }
@@ -40,29 +42,33 @@ class _HomePageState extends State<HomePage>
     return Scaffold(
       appBar: AppBar(
         title: Text("Carros"),
-        bottom: TabBar(
-          controller: _tabController,
-          tabs: [
-            Tab(
-              text: "Clássicos",
-              icon: Icon(Icons.directions_car),
-            ),
-            Tab(
-              text: "Esportivos",
-              icon: Icon(Icons.directions_car),
-            ),
-            Tab(
-              text: "Luxo",
-              icon: Icon(Icons.directions_car),
-            ),
-            Tab(
-              text: "Favoritos",
-              icon: Icon(Icons.favorite),
-            )
-          ],
-        ),
+        bottom: _tabController == null
+            ? null
+            : TabBar(
+                controller: _tabController,
+                tabs: [
+                  Tab(
+                    text: "Clássicos",
+                    icon: Icon(Icons.directions_car),
+                  ),
+                  Tab(
+                    text: "Esportivos",
+                    icon: Icon(Icons.directions_car),
+                  ),
+                  Tab(
+                    text: "Luxo",
+                    icon: Icon(Icons.directions_car),
+                  ),
+                  Tab(
+                    text: "Favoritos",
+                    icon: Icon(Icons.favorite),
+                  )
+                ],
+              ),
       ),
-      body: TabBarView(
+      body: _tabController == null
+          ? Container()
+          : TabBarView(
         controller: _tabController,
         children: [
           CarrosPage(TipoCarro.classicos),
