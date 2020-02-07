@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider<FavoritosModel>(
-          builder: (context) => FavoritosModel(),
+          create: (context) => FavoritosModel(),
         )
       ],
       child: MaterialApp(
