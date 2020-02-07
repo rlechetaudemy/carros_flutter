@@ -11,7 +11,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         Provider<FavoritosBloc>(
-          builder: (context) => FavoritosBloc(),
+          create: (context) => FavoritosBloc(),
           dispose: (context, bloc) => bloc.dispose(),
         )
       ],
