@@ -22,10 +22,18 @@ class _HomePageState extends State<HomePage>
 
   _initTabs() async {
 
+    // Primeiro busca o índice nas prefs.
     int tabIdx = await Prefs.getInt("tabIdx");
 
+    // Depois cria o TabController
+    // No método build na primeira vez ele poderá estar nulo
     _tabController = TabController(length: 3, vsync: this);
-    _tabController.index = tabIdx;
+
+    // Agora que temos o TabController e o índice da tab,
+    // chama o setState para redesenhar a tela
+    setState(() {
+      _tabController.index = tabIdx;
+    });
 
     _tabController.addListener(() {
       Prefs.setInt("tabIdx", _tabController.index);
