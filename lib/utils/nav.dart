@@ -15,6 +15,9 @@ Future push(BuildContext context, Widget page, {bool replace = false}) {
 }
 
 bool pop<T extends Object>(BuildContext context, [ T result ]) {
-  Navigator.pop(context);
-  return true;
+  if(Navigator.canPop(context)) {
+    Navigator.pop(context);
+    return true;
+  }
+  return false;
 }
